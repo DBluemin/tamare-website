@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAMARE Restaurant – Düsseldorf | Kaukasisch inspirierte & mediterrane Küche</title>
+<meta name="description" content="TAMARE Restaurant Düsseldorf – Fine Dining Experience. Kaukasisch inspirierte & mediterrane Küche an der Grafenberger Allee 277. Jetzt Tisch reservieren.">
+
+<!-- ============================================================
+     TAMARE RESTAURANT DÜSSELDORF
+     ------------------------------------------------------------
+     NOCH ZU ERGÄNZEN VOR VERÖFFENTLICHUNG:
+     1. Telefonnummer & E-Mail (Suche nach: KONTAKTDATEN)
+     2. Impressum/Datenschutz: [markierte Platzhalter] ausfüllen,
+        anwaltlich prüfen lassen
+     Hinweis: Die Landschaftsbilder werden über das Unsplash-CDN
+     geladen (Unsplash-Lizenz, kommerziell frei nutzbar). Für
+     maximale Unabhängigkeit können sie heruntergeladen und in
+     /bilder gelegt werden (Suche nach: LANDSCHAFT).
+     ============================================================ -->
+
+<link rel="icon" href="bilder/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* Dunkles Kino-Format */
+  --paper:#0E0D0B;        /* Bühne */
+  --paper-2:#15130F;      /* Sektionen */
+  --ink:#F1EBDD;          /* Text */
+  --ink-soft:#A69E8C;     /* Nebentext */
+  --gold:#C89B55;
+  --gold-deep:#D8B47A;    /* helleres Gold für Text auf Dunkel */
+  --line:rgba(200,155,85,.22);
+  --display:'Cormorant Garamond',serif;
+  --body:'Jost',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--ink);
+  font-size:16.5px;line-height:1.7;font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+::selection{background:var(--gold);color:#fff}
+
+h1,h2,h3{font-family:var(--display);font-weight:300;line-height:1.15}
+.eyebrow{
+  font-size:.68rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:400;display:block;margin-bottom:1.2rem;
+}
+.section-title{font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:.03em}
+.lead{font-size:1.05rem;color:var(--ink-soft);max-width:40rem}
+.gold-rule{width:52px;height:1px;background:var(--gold);margin:1.6rem 0;transform-origin:left;transform:scaleX(0);transition:transform 1.1s cubic-bezier(.22,1,.36,1) .15s}
+.center{text-align:center}
+.center .gold-rule{margin-left:auto;margin-right:auto;transform-origin:center}
+.in-view .gold-rule,.gold-rule.now{transform:scaleX(1)}
+
+/* ---------- Scroll-Reveal ---------- */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+.reveal.in-view{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}
+
+/* ---------- Header ---------- */
+header{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;
+  padding:1rem 2.4rem;transition:background .4s,box-shadow .4s,color .4s;
+  color:#fff;
+}
+header nav{justify-self:center}
+header.scrolled,header.light{background:rgba(14,13,11,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);color:var(--ink)}
+/* Header: freigestelltes Original-Logo – hell über Bildern, gold auf hellem Grund */
+header .brandlogo{display:block;position:relative;height:58px;width:76px}
+header .brandlogo img{position:absolute;left:0;top:0;height:58px;width:auto;transition:opacity .4s}
+header .brandlogo .lg-gold{opacity:1}
+header .brandlogo .lg-hell{opacity:0}
+/* Footer-Logo: freie Proportionen, nie gequetscht */
+.footlogo img{height:auto;width:200px;max-width:60vw;display:block}
+/* Saubere Umbrüche: keine einzelnen Wörter am Zeilenende */
+p{text-wrap:pretty}
+h1,h2,h3{text-wrap:balance}
+
+/* ---------- Intro: Logo auf dunklem Grund, hebt sich dann ab ---------- */
+.intro{
+  position:fixed;inset:0;z-index:400;background:#0B0A08;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 1.1s ease,visibility 0s 1.1s;
+}
+.intro img{width:min(340px,64vw);opacity:0;transform:scale(.9) translateY(14px);animation:introLogo 1.5s cubic-bezier(.22,1,.36,1) .35s forwards}
+@keyframes introLogo{to{opacity:1;transform:none}}
+.intro.done{opacity:0;visibility:hidden}
+body.intro-lock{overflow:hidden}
+
+/* ---------- Schwebende Bilder („Hologramm"-Effekt) ---------- */
+.split img,.gal img{
+  border-radius:6px;
+  box-shadow:0 30px 70px -20px rgba(0,0,0,.8),0 8px 26px rgba(200,155,85,.14);
+  transition:transform .7s cubic-bezier(.22,1,.36,1),box-shadow .7s;
+  animation:levitate 7.5s ease-in-out infinite;
+}
+.gal figure:nth-child(2n) img{animation-delay:1.4s}
+.gal figure:nth-child(3n) img{animation-delay:2.6s}
+@keyframes levitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.split img:hover,.gal img:hover{
+  transform:translateY(-12px) rotate(-.6deg) scale(1.015);
+  box-shadow:0 46px 100px -22px rgba(0,0,0,.9),0 12px 36px rgba(200,155,85,.28);
+}
+nav{display:flex;gap:2.4rem;align-items:center}
+nav a{
+  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;font-weight:400;
+  opacity:.85;padding-bottom:3px;border-bottom:1px solid transparent;
+  transition:opacity .3s,border-color .3s;
+}
+nav a:hover,nav a.active{opacity:1;border-color:var(--gold)}
+.btn{
+  display:inline-block;border:1px solid currentColor;border-radius:999px;
+  padding:.95rem 2.8rem;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
+  font-weight:400;background:transparent;transition:background .35s,color .35s,border-color .35s,transform .35s;
+}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:#0E0D0B;transform:translateY(-2px)}
+.btn.gold{border-color:var(--gold);background:var(--gold);color:#fff}
+.btn.gold:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
+.nav-book{border:1px solid currentColor;border-radius:999px;padding:.55rem 1.6rem;opacity:1!important}
+.nav-book:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.lang-toggle{
+  border:1px solid currentColor;border-radius:999px;padding:.4rem .95rem;
+  font-size:.66rem;letter-spacing:.2em;opacity:1!important;
+}
+.lang-toggle:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.burger{display:none;background:none;border:none;flex-direction:column;gap:6px;padding:6px;z-index:120}
+.burger span{width:26px;height:1px;background:currentColor;display:block}
+
+/* ---------- Seiten ---------- */
+.page{display:none;animation:fade .55s ease}
+.page.visible{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+section{padding:6.5rem 2.4rem}
+.wrap{max-width:1200px;margin:0 auto}
+
+/* ---------- Hero (Kaukasus-Panorama) ---------- */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;color:#fff;overflow:hidden}
+.hero-media{position:absolute;inset:-12% 0;background:linear-gradient(180deg,#2b2a26,#171613)}
+.hero-media img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,9,.55) 0%,rgba(12,11,9,.25) 45%,rgba(14,13,11,1) 100%)}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 2.4s ease;will-change:opacity,transform;animation:vzoom 22s ease-in-out infinite alternate}
+@keyframes vzoom{from{transform:scale(1.02)}to{transform:scale(1.1)}}
+.hero-video.on{opacity:1}
+.hero-inner{position:relative;z-index:2;max-width:960px}
+.hero-logo{width:min(400px,74vw);height:auto;margin:0 auto 1.4rem;filter:drop-shadow(0 6px 40px rgba(0,0,0,.55));opacity:0;transform:translateY(26px) scale(.97);animation:heroIn 1.4s cubic-bezier(.22,1,.36,1) .2s forwards}
+.hero-eyebrow{font-size:.72rem;letter-spacing:.5em;text-transform:uppercase;opacity:0;animation:heroIn 1.2s ease .7s forwards}
+.hero-sub{font-family:var(--display);font-style:italic;font-size:clamp(1.15rem,2.3vw,1.7rem);margin-top:.9rem;opacity:0;animation:heroIn 1.2s ease .95s forwards}
+.hero-cta{margin-top:2.8rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:heroIn 1.2s ease 1.2s forwards}
+@keyframes heroIn{to{opacity:1;transform:none}}
+.hero .btn{color:#fff;border-color:#fff}
+.hero .btn:hover{background:#fff;border-color:#fff;color:var(--ink)}
+.hero .btn.gold{border-color:var(--gold);background:var(--gold)}
+.hero .btn.gold:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:#fff}
+.scrollcue{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);z-index:2;font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;opacity:.75;animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+/* ---------- Parallax-Bänder (Landschaft) ---------- */
+.band{position:relative;min-height:64vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;padding:7rem 2rem}
+.band-media{position:absolute;inset:-14% 0;background:#26241f}
+.band-media img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0E0D0B 0%,rgba(14,13,10,.35) 22%,rgba(14,13,10,.35) 78%,#0E0D0B 100%)}
+.band-inner{position:relative;z-index:2;max-width:820px}
+.band-inner p.big{font-family:var(--display);font-style:italic;font-size:clamp(1.5rem,3.4vw,2.5rem);line-height:1.5}
+.band-inner .eyebrow{color:var(--gold)}
+.band-inner small{display:block;margin-top:1.6rem;font-size:.65rem;letter-spacing:.38em;text-transform:uppercase;opacity:.85}
+
+/* ---------- Story-Kapitel ---------- */
+.chapter-no{font-family:var(--display);font-style:italic;font-size:1rem;color:var(--gold-deep);letter-spacing:.14em}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.split img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.split-text p{color:var(--ink-soft);margin-bottom:1rem}
+.split.rev>*:first-child{order:2}
+
+/* ---------- Zitat ---------- */
+.quote{background:var(--paper);border:none;text-align:center;padding-top:9rem;padding-bottom:9rem}
+.quote p{font-family:var(--display);font-style:italic;font-size:clamp(1.45rem,3vw,2.3rem);max-width:46rem;margin:0 auto;line-height:1.5}
+.quote small{display:block;margin-top:1.8rem;font-size:.65rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold-deep)}
+
+/* ---------- Signature-Szenen: volle Bühne im Kino-Stil ---------- */
+.scene{
+  min-height:100vh;display:grid;grid-template-columns:1fr 1.25fr;
+  align-items:end;gap:1rem;position:relative;padding:6rem 4vw 7rem;
+}
+.scene .s-text{align-self:end;padding-bottom:4vh}
+.scene .s-media{align-self:center}
+.scene.rev .s-text{order:2}
+.scene .s-text{padding-left:4vw;max-width:560px}
+.scene.rev .s-text{padding-left:0;padding-right:4vw;justify-self:end;text-align:right}
+.scene.rev .s-sub{margin-left:auto}
+.s-title{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(2.4rem,6vw,5rem);
+  letter-spacing:.12em;text-transform:uppercase;line-height:1.1;
+  color:var(--ink);
+}
+.s-sub{color:var(--ink-soft);margin-top:1.4rem;max-width:24rem;font-size:1rem;line-height:1.9}
+.s-link{
+  display:inline-block;margin-top:1.8rem;
+  font-family:var(--display);font-style:italic;font-size:1.15rem;
+  color:var(--gold-deep);border-bottom:1px solid transparent;
+  transition:border-color .3s;
+}
+.s-link:hover{border-color:var(--gold)}
+.s-media{display:flex;justify-content:center}
+.plate{
+  width:100%;max-width:600px;display:block;
+  border-radius:10px;
+  box-shadow:0 46px 90px -20px rgba(0,0,0,.9),0 10px 30px rgba(200,155,85,.15);
+  animation:levitate 8s ease-in-out infinite;
+}
+/* Freigestellte Teller (transparente PNGs): keine Rundung, kein Kasten – nur Schattenwurf */
+.plate.cut{
+  max-width:700px;border-radius:0;box-shadow:none;
+  filter:drop-shadow(0 46px 70px rgba(0,0,0,.9));
+}
+/* Dunkles Food-Foto (schwarzer Studiohintergrund): randlos, weiche Kanten,
+   verschmilzt mit der Bühne – wirkt wie freigestellt, volle Fotoqualität */
+.plate.photo-dark{max-width:640px;border-radius:0;box-shadow:none;filter:none}
+/* Teller unter dem Zitat (Kei-Dramaturgie: Zweizeiler oben, Gericht darunter) */
+.quote .quote-plate{display:flex;justify-content:center;margin-top:4.5rem}
+.quote .quote-plate .plate.cut{max-width:520px}
+/* Ambiente hinter der Szene: schwebende dunkle Elemente (wie Steine/Trüffel) */
+.scene .s-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{
+  position:absolute;display:block;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%, #2E2A22 0%, #1A1712 45%, #0D0C0A 78%);
+  box-shadow:inset -6px -10px 24px rgba(0,0,0,.8), inset 4px 6px 14px rgba(200,155,85,.12), 0 30px 60px rgba(0,0,0,.6);
+  filter:blur(1px);
+  animation:levitate 9s ease-in-out infinite;
+}
+.orb.o1{width:200px;height:170px;top:8%;left:6%;opacity:.75;border-radius:48% 52% 55% 45%/55% 48% 52% 45%}
+.orb.o2{width:110px;height:95px;top:64%;left:14%;opacity:.6;animation-delay:1.8s;border-radius:52% 48% 45% 55%/48% 55% 45% 52%}
+.orb.o3{width:150px;height:125px;top:16%;right:8%;opacity:.65;animation-delay:3.2s;border-radius:55% 45% 52% 48%/45% 52% 48% 55%}
+.orb.o4{width:80px;height:70px;bottom:12%;right:16%;opacity:.55;animation-delay:4.6s;border-radius:48% 52% 48% 52%/52% 48% 55% 45%}
+.orb.o5{width:60px;height:52px;top:44%;left:44%;opacity:.4;animation-delay:2.4s;border-radius:50% 50% 46% 54%/54% 46% 50% 50%}
+.orbs-2 .o1{left:auto;right:5%;top:60%}
+.orbs-2 .o3{right:auto;left:7%;top:10%}
+.orbs-3 .o2{left:auto;right:20%;top:8%}
+.orbs-3 .o4{right:auto;left:10%;bottom:16%}
+.scene .s-text,.scene .s-media{position:relative;z-index:1}
+.scene:nth-child(odd) .plate{animation-delay:1.6s}
+/* Epische Einblendungen */
+.reveal-plate{transform:translateY(80px) scale(.9);transition-duration:1.6s}
+.reveal-title{letter-spacing:.5em;transition:opacity 1.4s ease,transform 1.4s ease,letter-spacing 1.8s cubic-bezier(.22,1,.36,1)}
+.reveal-title.in-view{letter-spacing:.12em}
+
+/* ---------- Galerie ---------- */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:3.5rem}
+.gal figure{margin:0;text-align:left}
+.gal img{aspect-ratio:3/4;object-fit:cover;width:100%}
+.gal figcaption{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:.7rem}
+
+/* ---------- Instagram-Feed ---------- */
+.insta-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.8rem;margin:3.5rem 0 3rem}
+.insta-post{display:block;overflow:hidden;border-radius:6px}
+.insta-post img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;display:block;
+  transition:transform .7s cubic-bezier(.22,1,.36,1),opacity .4s;
+}
+.insta-post:hover img{transform:scale(1.08);opacity:.88}
+@media(max-width:920px){.insta-grid{grid-template-columns:repeat(3,1fr);gap:.6rem}}
+
+/* ---------- Öffnungszeiten ---------- */
+.hours{max-width:680px;margin:3rem auto 0}
+.hours-row{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+.hours-row:first-child{border-top:1px solid var(--line)}
+.hours-row .day{font-family:var(--display);font-size:1.25rem}
+.hours-row .time{color:var(--ink-soft);text-align:right;font-size:.95rem}
+.hours-row .time span{display:block;font-size:.75rem;letter-spacing:.08em;color:var(--gold-deep)}
+.hours-row.closed .time{color:var(--gold-deep);font-style:italic}
+
+/* ---------- Infoleiste ---------- */
+.infobar{background:#080706;color:var(--ink);border-top:1px solid var(--line)}
+.infobar .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+.infobar .eyebrow{color:var(--gold)}
+.infobar h3{font-size:1.35rem;margin-bottom:1rem;color:#fff}
+.infobar p{font-size:.92rem;color:#C7C1B2;line-height:2.1}
+.infobar a{color:var(--gold);border-bottom:1px solid rgba(185,138,69,.4)}
+.infobar a:hover{border-color:var(--gold)}
+.todo-inline{color:var(--gold-deep);font-style:italic;font-size:.8rem}
+.infobar .todo-inline{color:var(--gold)}
+
+/* ---------- Speisekarte ---------- */
+.menu-intro{max-width:640px;margin:0 auto 4.5rem;text-align:center;color:var(--ink-soft)}
+.menu-block{max-width:800px;margin:0 auto 5rem}
+.menu-block h2{
+  text-align:center;font-size:.85rem;letter-spacing:.46em;text-transform:uppercase;
+  color:var(--gold-deep);font-family:var(--body);font-weight:400;margin-bottom:.5rem;
+}
+.menu-block .sub{text-align:center;font-family:var(--display);font-style:italic;color:var(--ink-soft);margin-bottom:2.4rem;font-size:1.05rem}
+.menu-block::before{content:"";display:block;width:40px;height:1px;background:var(--gold);margin:0 auto 1.2rem}
+.dish{display:flex;justify-content:space-between;align-items:baseline;gap:1.8rem;padding:1.2rem 0;border-bottom:1px solid var(--line)}
+.dish-name{font-family:var(--display);font-size:1.35rem}
+.veg{
+  display:inline-block;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid var(--gold);color:var(--gold-deep);
+  padding:.08rem .45rem;margin-left:.6rem;vertical-align:middle;border-radius:2px;
+}
+.dish-desc{font-size:.9rem;color:var(--ink-soft);margin-top:.3rem;letter-spacing:.02em}
+.dish-price{font-family:var(--display);font-size:1.2rem;white-space:nowrap;color:var(--gold-deep)}
+
+/* Weinkarte */
+.wine{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.wine-table{max-width:800px;margin:0 auto 3rem}
+.wine-head{display:grid;grid-template-columns:1fr auto auto;gap:1rem;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);padding:.7rem 0;border-bottom:1px solid var(--gold)}
+.wine-row{display:grid;grid-template-columns:1fr auto auto;gap:1rem;align-items:baseline;padding:1.05rem 0;border-bottom:1px solid var(--line)}
+.wine-row .n{font-family:var(--display);font-size:1.25rem}
+.wine-row .d{font-size:.83rem;color:var(--ink-soft);font-style:italic;margin-top:.15rem}
+.wine-row .p{font-family:var(--display);color:var(--gold-deep);min-width:66px;text-align:right;font-size:1.1rem}
+.wine-note{max-width:800px;margin:0 auto;text-align:center;font-size:.9rem;color:var(--ink-soft);line-height:2}
+.wine-note strong{color:var(--ink);font-weight:400;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem}
+.allergen{max-width:800px;margin:1rem auto 0;font-size:.78rem;color:var(--ink-soft);text-align:center}
+.dl-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.dl-row .btn{padding:.75rem 2rem;font-size:.64rem}
+
+/* ---------- Reservierung (Lightspeed) ---------- */
+.booking-frame{
+  max-width:860px;margin:3rem auto 0;background:#fff;border:1px solid var(--line);
+  border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);
+}
+.booking-frame iframe{display:block;width:100%;height:860px;border:0}
+.booking-fallback{max-width:860px;margin:1.6rem auto 0;text-align:center;font-size:.85rem;color:var(--ink-soft)}
+.policy{max-width:760px;margin:3.5rem auto 0;font-family:var(--display);font-style:italic;font-size:1.1rem;color:var(--ink-soft);text-align:center;line-height:2}
+
+/* ---------- Rechtstexte ---------- */
+.legal{max-width:820px;margin:0 auto}
+.legal h1{font-size:2.3rem;margin-bottom:2.4rem}
+.legal h2{font-size:1.3rem;margin:2.4rem 0 .8rem}
+.legal p,.legal li{font-size:.94rem;color:var(--ink-soft);margin-bottom:.8rem}
+.legal ul{padding-left:1.2rem}
+.legal a{color:var(--gold-deep);text-decoration:underline}
+.legal .todo{background:rgba(200,155,85,.14);border:1px solid var(--line);padding:.05rem .4rem;color:var(--gold-deep)}
+.legal-warn{border:1px solid var(--line);background:rgba(200,155,85,.1);padding:1rem 1.3rem;font-size:.84rem;color:var(--gold-deep);margin-bottom:2.5rem}
+
+/* ---------- Footer ---------- */
+footer{background:#080706;color:#C7C1B2;border-top:1px solid var(--line);padding:4.5rem 2.4rem 2rem}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
+footer .brandlogo img{filter:none}
+footer h4{font-size:.64rem;letter-spacing:.34em;text-transform:uppercase;margin-bottom:1.1rem;color:var(--gold)}
+footer p,footer a{font-size:.87rem;line-height:2.1}
+footer a:hover{color:#fff;text-decoration:underline}
+.footline{max-width:1200px;margin:3.5rem auto 0;padding-top:1.4rem;border-top:1px solid rgba(199,193,178,.2);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.72rem;color:#8F897B}
+
+/* ---------- Cookie ---------- */
+.cookie{position:fixed;left:1.2rem;right:1.2rem;bottom:1.2rem;z-index:200;background:#191611;border:1px solid var(--line);color:var(--ink);padding:1.4rem 1.8rem;max-width:560px;display:none;box-shadow:0 16px 50px rgba(0,0,0,.6)}
+.cookie.show{display:block}
+.cookie p{font-size:.82rem;line-height:1.7;color:var(--ink-soft);margin-bottom:1rem}
+.cookie a{color:var(--gold-deep);text-decoration:underline}
+.cookie .row{display:flex;gap:.8rem;flex-wrap:wrap}
+.cookie button{border:1px solid var(--gold);background:transparent;color:var(--gold-deep);padding:.55rem 1.3rem;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;border-radius:999px}
+.cookie button.acc{background:var(--gold);color:#0E0D0B}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1080px){.scene{gap:1rem;padding:4rem 3vw}}
+@media(max-width:920px){
+  .split,.infobar .wrap{grid-template-columns:1fr;gap:2.6rem}
+  .scene{grid-template-columns:1fr;min-height:auto;padding:4rem 1.4rem;gap:.6rem;text-align:center}
+  .scene .s-text,.scene.rev .s-text{order:0;padding:0;max-width:none;justify-self:center;text-align:center}
+  .s-sub{margin:1rem auto 0}
+  .scene .s-media{order:1}
+  .plate{max-width:420px}
+  .split.rev>*:first-child{order:0}
+  .gal{grid-template-columns:1fr 1fr}
+  footer .wrap{grid-template-columns:1fr 1fr}
+  nav{position:fixed;inset:0;background:#0B0A08;color:var(--ink);flex-direction:column;justify-content:center;gap:2.2rem;display:none}
+  nav.open{display:flex}
+  nav a{font-size:.9rem}
+  .burger{display:flex}
+  section{padding:4.5rem 1.4rem}
+  .booking-frame iframe{height:760px}
+  .band{min-height:52vh;padding:5rem 1.4rem}
+}
+@media(max-width:560px){.gal{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto}
+  .reveal,.hero-logo,.hero-eyebrow,.hero-sub,.hero-cta{opacity:1!important;transform:none!important}
+  .gold-rule{transform:scaleX(1)!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="header">
+  <a href="#/" class="brandlogo" aria-label="Tamare Restaurant – Startseite">
+    <img class="lg-hell" src="bilder/logo-frei-hell.png" alt="">
+    <img class="lg-gold" src="bilder/logo-frei.png" alt="Tamare Restaurant">
+  </a>
+  <button class="burger" id="burger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+  <nav id="nav">
+    <a href="#/" data-page="home">Start</a>
+    <a href="#/restaurant" data-page="restaurant">Das Restaurant</a>
+    <a href="#/speisekarte" data-page="speisekarte">Speise- &amp; Weinkarte</a>
+    <a href="#/kontakt" data-page="kontakt">Kontakt</a>
+    <a href="#/reservierung" data-page="reservierung" class="nav-book">Tisch reservieren</a>
+    <a href="#" id="langToggle" class="lang-toggle" aria-label="Switch language">EN</a>
+  </nav>
+</header>
+
+<!-- Intro: Emblem auf dunklem Grund, hebt sich zur Seite ab -->
+<div class="intro" id="intro" aria-hidden="true">
+  <img src="bilder/logo-frei-hell.png" alt="">
+</div>
+
+<main>
+
+<!-- ================= START ================= -->
+<div class="page" id="page-home">
+
+  <!-- Hero: Kaukasus-Panorama (LANDSCHAFT: Unsplash-CDN, frei nutzbar) -->
+  <div class="hero">
+    <div class="hero-media" data-parallax="0.25">
+      <img src="bilder/tamare-foto-2.jpg" alt="Impression aus dem Tamare Restaurant">
+      <!-- Video-Sequenz: eigene Tamare-Aufnahmen in Zeitlupe (lokal in /videos).
+           Fällt automatisch auf das Foto zurück, wenn Videos nicht laden. -->
+      <video class="hero-video" muted playsinline preload="none" aria-hidden="true"></video>
+      <video class="hero-video" muted playsinline preload="none" aria-hidden="true"></video>
+    </div>
+    <div class="hero-inner">
+      <img class="hero-logo" src="bilder/logo-frei.png" alt="TAMARE Restaurant">
+      <p class="hero-eyebrow">Fine Dining Experience · Düsseldorf</p>
+      <p class="hero-sub">Kaukasisch inspirierte &amp; mediterrane Küche</p>
+      <div class="hero-cta">
+        <a class="btn gold" href="#/reservierung">Tisch reservieren</a>
+        <a class="btn" href="#/speisekarte">Zur Speisekarte</a>
+      </div>
+    </div>
+    <span class="scrollcue">Entdecken</span>
+  </div>
+
+  <!-- Kapitel 1: Die Herkunft -->
+  <section>
+    <div class="wrap split">
+      <img class="reveal" src="https://images.unsplash.com/photo-1569498283068-140e58143192?fm=jpg&q=70&w=1400&auto=format&fit=crop" alt="Steinerne Wehrtürme von Uschguli vor den Gipfeln des Großen Kaukasus, Georgien" onerror="this.src='bilder/badridzhani.jpg'">
+      <div class="split-text reveal d1">
+        <span class="chapter-no">Kapitel I</span>
+        <h2 class="section-title">Vom Kaukasus<br>an den Rhein</h2>
+        <div class="gold-rule"></div>
+        <p>Zwischen Schwarzem Meer und Kaspischem Meer, unter den Fünftausendern des Großen Kaukasus, liegt eine der ältesten Ess- und Weinkulturen der Welt. Hier wird seit 8.000 Jahren Wein in Qvevri-Amphoren vergoren, hier bedeutet ein gedeckter Tisch – die Supra – Einladung, Fest und Freundschaft&nbsp;zugleich.</p>
+        <p>Diese Geschichte bringen wir nach Düsseldorf: an die Grafenberger Allee, mitten&nbsp;ins&nbsp;Rheinland.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zitat -->
+  <section class="quote">
+    <div class="wrap reveal">
+      <p>„Wo Walnuss, Granatapfel und Feuer sich begegnen:<br>die Aromen des Kaukasus, neu erzählt am Mittelmeer."</p>
+      <small>Tamare · Düsseldorf</small>
+    </div>
+    <div class="quote-plate">
+      <img class="plate cut reveal reveal-plate" src="bilder/cut-burrata.png" alt="Burrata &amp; Basilikum-Phali mit Ofentomaten">
+    </div>
+  </section>
+
+  <!-- Kapitel 2: Die Küche -->
+  <section>
+    <div class="wrap split rev">
+      <img class="reveal" src="bilder/tamare-tisch.jpg" alt="Gedeckter Tisch im Tamare mit georgischen Vorspeisen">
+      <div class="split-text reveal d1">
+        <span class="chapter-no">Kapitel II</span>
+        <h2 class="section-title">Zwei Welten,<br>eine Handschrift</h2>
+        <div class="gold-rule"></div>
+        <p>Unsere Küche verbindet die Tiefe des Kaukasus – Walnuss, Koriander, Granatapfel, Adjika und das offene Feuer – mit der Leichtigkeit des Mittelmeers.</p>
+        <p>Jedes Gericht entsteht aus sorgfältig ausgewählten Produkten: vom handgefalteten Khinkali bis zu 48 Stunden sous-vide gegarten Wagyu Short Ribs vom Lavastein-Grill.</p>
+        <a class="btn" href="#/restaurant" style="margin-top:1.4rem">Mehr erfahren</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kapitel 3: Der Name -->
+  <section>
+    <div class="wrap split">
+      <img class="reveal" src="bilder/koch-grill.jpg" alt="Unser Küchenchef am offenen Grill">
+      <div class="split-text reveal d1">
+        <span class="chapter-no">Kapitel III</span>
+        <h2 class="section-title">Warum Tamare?</h2>
+        <div class="gold-rule"></div>
+        <p>Der Name ist eine Liebeserklärung: Auf Reisen durch Georgien haben sich unser Inhaber und seine Frau in dieses Land verliebt – in die Landschaften zwischen Schwarzem Meer und Kaukasus, in die Gastfreundschaft, in die Küche.</p>
+        <p>„Tamare" erinnert an Königin Tamar, unter der Georgien im 12. Jahrhundert sein Goldenes Zeitalter erlebte. Ihr Name steht bis heute für Großzügigkeit und Kultur – genau das, was wir an unseren Tisch nach Düsseldorf bringen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature-Szenen: volle Bühne im Kei-Stil.
+       PLATE-SLOT: Sobald die selbst freigestellten Teller-PNGs (transparenter
+       Hintergrund) vorliegen, einfach die drei img src unten auf die PNGs
+       zeigen lassen und in der CSS-Klasse .plate den border-radius entfernen. -->
+  <section class="scenes" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:0">
+
+    <div class="scene">
+      <div class="s-text">
+        <h2 class="s-title reveal reveal-title">Khinkali</h2>
+        <p class="s-sub reveal d1">Handgemachte georgische Teigtaschen mit hausgemachter Sauce – Wagyu-Rind, Spinat-Käse oder Waldpilz.</p>
+        <a class="s-link reveal d2" href="#/speisekarte">Die Karte entdecken</a>
+      </div>
+      <div class="s-bg orbs-1"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i><i class="orb o5"></i></div>
+      <div class="s-media">
+        <img class="plate cut reveal reveal-plate" src="bilder/cut-khinkali.png" alt="Khinkali – handgemachte georgische Teigtaschen">
+      </div>
+    </div>
+
+    <div class="scene rev">
+      <div class="s-text">
+        <h2 class="s-title reveal reveal-title">Wagyu Short Ribs</h2>
+        <p class="s-sub reveal d1">48 Stunden sous-vide gegart, mit Granatapfeljus und Trüffelpüree.</p>
+        <a class="s-link reveal d2" href="#/speisekarte">Die Karte entdecken</a>
+      </div>
+      <div class="s-bg orbs-2"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i><i class="orb o5"></i></div>
+      <div class="s-media">
+        <img class="plate photo-dark reveal reveal-plate" src="bilder/wagyu-anrichten.png" alt="Wagyu Short Ribs werden angerichtet – Granatapfeljus und Trüffel">
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="s-text">
+        <h2 class="s-title reveal reveal-title">Gegrillte Garnelen</h2>
+        <p class="s-sub reveal d1">Vom Lavastein-Grill, mit Rosmarin, Knoblauch und Tomate.</p>
+        <a class="s-link reveal d2" href="#/speisekarte">Die Karte entdecken</a>
+      </div>
+      <div class="s-bg orbs-3"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i><i class="orb o5"></i></div>
+      <div class="s-media">
+        <img class="plate cut reveal reveal-plate" src="bilder/cut-garnelen.png" alt="Gegrillte Garnelen mit Rosmarin">
+      </div>
+    </div>
+
+    <div class="scene rev">
+      <div class="s-text">
+        <h2 class="s-title reveal reveal-title">Charcho</h2>
+        <p class="s-sub reveal d1">Kräftige Suppe vom Rind – mit Reis, Tomate, Walnuss und frischen Kräutern.</p>
+        <a class="s-link reveal d2" href="#/speisekarte">Die Karte entdecken</a>
+      </div>
+      <div class="s-bg orbs-2"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i><i class="orb o5"></i></div>
+      <div class="s-media">
+        <img class="plate cut reveal reveal-plate" src="bilder/cut-charcho.png" alt="Charcho – kräftige Suppe vom Rind">
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="s-text">
+        <h2 class="s-title reveal reveal-title">Hähnchen-Shashlik</h2>
+        <p class="s-sub reveal d1">Vom Lavastein-Grill – mit Lavash, eingelegter roter Zwiebel und Adjika-Joghurt-Marinade.</p>
+        <a class="s-link reveal d2" href="#/speisekarte">Die Karte entdecken</a>
+      </div>
+      <div class="s-bg orbs-3"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i><i class="orb o5"></i></div>
+      <div class="s-media">
+        <img class="plate cut reveal reveal-plate" src="bilder/cut-shashlik.png" alt="Hähnchen-Shashlik auf Lavash">
+      </div>
+    </div>
+
+    <p class="center" style="padding:0 2rem 6rem"><a class="btn" href="#/speisekarte">Die ganze Karte entdecken</a></p>
+  </section>
+
+  <!-- Parallax-Band: Landschaft + Einladung (LANDSCHAFT) -->
+  <div class="band">
+    <div class="band-media" data-parallax="0.22">
+      <img src="https://images.unsplash.com/photo-1544376383-f6418ae57526?fm=jpg&q=70&w=2400&auto=format&fit=crop" alt="Schneebedeckte Gipfel des Kaukasus" onerror="this.style.display='none'">
+    </div>
+    <div class="band-inner reveal">
+      <span class="eyebrow">Die Einladung</span>
+      <p class="big">„Ein Gast ist ein Geschenk Gottes"<br>– so sagt man in Georgien.<br>Seien Sie unser Gast.</p>
+      <p style="margin-top:2.4rem"><a class="btn gold" href="#/reservierung">Tisch reservieren</a></p>
+    </div>
+  </div>
+
+  <!-- Instagram: schwebende Teller & Follow -->
+  <section class="insta" style="border-top:1px solid var(--line);overflow:hidden">
+    <div class="wrap center">
+      <div class="reveal">
+        <span class="eyebrow">@tamare.restaurant.dusseldorf</span>
+        <h2 class="section-title">Folgt uns auf Instagram</h2>
+        <div class="gold-rule"></div>
+        <p class="lead" style="margin:0 auto">Neue Gerichte, Einblicke aus der Küche und besondere Abende – zuerst auf Instagram.</p>
+      </div>
+      <div class="insta-grid">
+        <a class="insta-post reveal" href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener"><img src="bilder/badridzhani.jpg" alt="Badridzhani Tamare"></a>
+        <a class="insta-post reveal d1" href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener"><img src="bilder/phali-trilogie.jpg" alt="Phali-Trilogie Tamare"></a>
+        <a class="insta-post reveal d2" href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener"><img src="bilder/grilllachs.jpg" alt="Grilllachs"></a>
+        <a class="insta-post reveal d1" href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener"><img src="bilder/wagyu-short-ribs.jpg" alt="Wagyu Short Ribs"></a>
+        <a class="insta-post reveal d2" href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener"><img src="bilder/cheesecake.jpg" alt="Hausgemachter Cheesecake"></a>
+        <a class="insta-post reveal d3" href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener"><img src="bilder/garnelen.jpg" alt="Gegrillte Garnelen"></a>
+      </div>
+      <p class="reveal"><a class="btn gold" href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener">Auf Instagram folgen</a></p>
+    </div>
+  </section>
+
+  <!-- Öffnungszeiten -->
+  <section>
+    <div class="wrap center">
+      <div class="reveal">
+        <span class="eyebrow">Öffnungszeiten</span>
+        <h2 class="section-title">Wann Sie uns finden</h2>
+        <div class="gold-rule"></div>
+      </div>
+      <div class="hours reveal d1">
+        <div class="hours-row"><span class="day">Montag</span><span class="time">16:00 – 22:00 Uhr <span>Küche bis 21:30</span></span></div>
+        <div class="hours-row closed"><span class="day">Dienstag</span><span class="time">Ruhetag</span></div>
+        <div class="hours-row"><span class="day">Mittwoch</span><span class="time">16:00 – 22:00 Uhr <span>Küche bis 21:30</span></span></div>
+        <div class="hours-row"><span class="day">Donnerstag</span><span class="time">16:00 – 22:00 Uhr <span>Küche bis 21:30</span></span></div>
+        <div class="hours-row"><span class="day">Freitag</span><span class="time">16:00 – 23:00 Uhr <span>Küche bis 22:30</span></span></div>
+        <div class="hours-row"><span class="day">Samstag</span><span class="time">12:00 – 23:00 Uhr <span>Küche bis 22:30</span></span></div>
+        <div class="hours-row"><span class="day">Sonntag</span><span class="time">12:00 – 22:00 Uhr <span>Küche bis 21:30</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info -->
+  <section class="infobar">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Adresse</span>
+        <h3>Wo Sie uns finden</h3>
+        <p>Tamare Restaurant<br>Grafenberger Allee 277<br>40237 Düsseldorf</p>
+      </div>
+      <div class="reveal d1">
+        <span class="eyebrow">Reservierung</span>
+        <h3>Ihr Tisch wartet</h3>
+        <p>Online in unter einer Minute<br>mit sofortiger Bestätigung.<br><a href="#/reservierung">Jetzt reservieren →</a></p>
+      </div>
+      <div class="reveal d2">
+        <span class="eyebrow">Kontakt</span>
+        <h3>Sprechen Sie uns an</h3>
+        <!-- KONTAKTDATEN: bitte anpassen -->
+        <p><a href="tel:+4921146872090">+49 211 46872090</a><br><a href="mailto:info@tamare-restaurant.de">info@tamare-restaurant.de</a><br><a href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener">Instagram ↗</a></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= DAS RESTAURANT ================= -->
+<div class="page" id="page-restaurant">
+  <section style="padding-top:10rem">
+    <div class="wrap center reveal">
+      <span class="eyebrow">Das Restaurant</span>
+      <h1 class="section-title">Willkommen im Tamare</h1>
+      <div class="gold-rule"></div>
+      <p class="lead" style="margin:0 auto">Fine Dining an der Grafenberger Allee: Das Tamare bringt die Gastfreundschaft des Kaukasus und die Aromen des Mittelmeers nach Düsseldorf – in einem Rahmen, der zum Verweilen einlädt.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap split">
+      <img class="reveal" src="bilder/interior-hell.jpg" alt="Der lichtdurchflutete Gastraum des Tamare am Tag">
+      <div class="split-text reveal d1">
+        <span class="eyebrow">Das Ambiente</span>
+        <h2 class="section-title" style="font-size:2.1rem">Ein Raum zum Verweilen</h2>
+        <div class="gold-rule"></div>
+        <p>Warme Hölzer, gedämpftes Licht und samtige Sessel in Rosé und Salbeigrün: Unser Gastraum an der Grafenberger Allee verbindet großzügige Fensterfronten mit der Intimität einzelner Nischen – lichtdurchflutet und offen am Tag, kerzenwarm am Abend.</p>
+        <p>Ob Dinner zu zweit, Familienfeier oder ein Abend mit Freunden – hier findet jeder Anlass seinen Platz.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap split rev">
+      <img class="reveal" src="bilder/burrata-phali.jpg" alt="Burrata und Basilikum-Phali mit Ofentomaten">
+      <div class="split-text reveal d1">
+        <span class="eyebrow">Die Philosophie</span>
+        <h2 class="section-title" style="font-size:2.1rem">Supra – der gedeckte Tisch</h2>
+        <div class="gold-rule"></div>
+        <p>In Georgien ist ein gedeckter Tisch mehr als eine Mahlzeit: Er ist Einladung, Fest und Begegnung zugleich. Diese Idee tragen wir ins Tamare – mit Gerichten, die zum Teilen gemacht sind, und einem Service, der Gastfreundschaft ernst nimmt.</p>
+        <p>Walnusscremes und Phali, handgefaltete Khinkali, Fleisch und Fisch vom Lavastein-Grill – begleitet von georgischen Weinen aus der Qvevri und Klassikern aus Deutschland und Italien.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap split">
+      <img class="reveal" src="bilder/garnelen.jpg" alt="Gegrillte Garnelen mit Rosmarin">
+      <div class="split-text reveal d1">
+        <span class="eyebrow">Das Handwerk</span>
+        <h2 class="section-title" style="font-size:2.1rem">Feuer &amp; Präzision</h2>
+        <div class="gold-rule"></div>
+        <p>Unser Lavastein-Grill gibt Rinderfilet, Rib Eye, Shashlik und Garnelen ihre charakteristischen Röstaromen. Daneben arbeitet die Küche mit Zeit und Geduld: Short Ribs garen 48 Stunden sous-vide, Saucen und Cremes entstehen täglich frisch im Haus.</p>
+        <a class="btn" href="#/speisekarte" style="margin-top:1.4rem">Zur Speisekarte</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax-Band: Ambiente am Abend (eigenes Foto) -->
+  <div class="band" style="min-height:48vh">
+    <div class="band-media" data-parallax="0.2">
+      <img src="bilder/interior-abend.jpg" alt="Der Gastraum des Tamare am Abend im warmen Kerzenlicht">
+    </div>
+    <div class="band-inner reveal">
+      <p class="big">Wenn die Lichter gedimmt sind,<br>beginnt der Abend bei uns.</p>
+      <small>Kaukasische Gastfreundschaft · mitten in Düsseldorf</small>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap center">
+      <div class="reveal">
+        <span class="eyebrow">Einblicke</span>
+        <h2 class="section-title">Momente aus dem Tamare</h2>
+        <div class="gold-rule"></div>
+      </div>
+      <div class="gal">
+        <figure class="reveal"><img src="bilder/salat-tamare.jpg" alt="Salat Tamare"><figcaption>Salat Tamare</figcaption></figure>
+        <figure class="reveal d1"><img src="bilder/tamare-foto-3.jpg" alt="Impression aus dem Tamare"><figcaption>Impression I</figcaption></figure>
+        <figure class="reveal d2"><img src="bilder/tamare-foto-4.jpg" alt="Impression aus dem Tamare"><figcaption>Impression II</figcaption></figure>
+        <figure class="reveal"><img src="bilder/georgischer-salat.jpg" alt="Georgischer Salat Tamare"><figcaption>Georgischer Salat Tamare</figcaption></figure>
+        <figure class="reveal d1"><img src="bilder/charcho.jpg" alt="Charcho – kräftige Suppe vom Rind"><figcaption>Charcho</figcaption></figure>
+        <figure class="reveal d2"><img src="bilder/badridzhani.jpg" alt="Badridzhani Tamare – Auberginenröllchen"><figcaption>Badridzhani Tamare</figcaption></figure>
+        <figure class="reveal"><img src="bilder/chkmeruli.jpg" alt="Chkmeruli – Hähnchenbrust in Knoblauchsauce"><figcaption>Chkmeruli</figcaption></figure>
+        <figure class="reveal d1"><img src="bilder/trueffel-pommes.jpg" alt="Trüffelpommes"><figcaption>Trüffelpommes</figcaption></figure>
+        <figure class="reveal d2"><img src="bilder/cheesecake-tee.jpg" alt="Hausgemachter Cheesecake mit Sanddorntee"><figcaption>Cheesecake &amp; Sanddorntee</figcaption></figure>
+      </div>
+      <p class="reveal" style="margin-top:3.5rem"><a class="btn" href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener">Folgen Sie uns auf Instagram</a></p>
+    </div>
+  </section>
+</div>
+
+<!-- ================= SPEISEKARTE ================= -->
+<div class="page" id="page-speisekarte">
+  <section style="padding-top:10rem;padding-bottom:2rem">
+    <div class="wrap center reveal">
+      <span class="eyebrow">Abendkarte</span>
+      <h1 class="section-title">Speisekarte</h1>
+      <div class="gold-rule"></div>
+      <p class="menu-intro" style="margin-bottom:2rem">Kaukasisch inspiriert, mediterran verfeinert. Gerichte mit <span class="veg" style="margin:0">Veg</span> sind vegetarisch.</p>
+      <p class="dl-row">
+        <a class="btn" href="downloads/tamare-speisekarte.pdf" download>Speisekarte als PDF</a>
+        <a class="btn" href="downloads/tamare-weinkarte.pdf" download>Weinkarte als PDF</a>
+      </p>
+    </div>
+
+    <div class="menu-block reveal">
+      <h2>Brot &amp; Einstieg</h2>
+      <p class="sub">Zum Ankommen</p>
+      <div class="dish"><div><div class="dish-name">Ofenbrot Tamare<span class="veg">Veg</span></div><div class="dish-desc">Warmes Steinofenbaguette / Adjika-Kräuterbutter / Tamare Kräutercreme / Limetten-Koriander-Butter</div></div><div class="dish-price">11,90&nbsp;€</div></div>
+    </div>
+
+    <div class="menu-block reveal">
+      <h2>Vorspeisen</h2>
+      <p class="sub">Kalt &amp; warm</p>
+      <div class="dish"><div><div class="dish-name">Georgischer Salat Tamare<span class="veg">Veg</span></div><div class="dish-desc">Tomaten / Gurken / eingelegte rote Zwiebel / Koriander / Walnuss-Vinaigrette</div></div><div class="dish-price">13,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Badridzhani Tamare<span class="veg">Veg</span></div><div class="dish-desc">Auberginenröllchen / Walnusscreme / Tamare Kräutercreme / Korianderöl / Granatapfel</div></div><div class="dish-price">13,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Phali-Trilogie Tamare<span class="veg">Veg</span></div><div class="dish-desc">Basilikum / Karotte / Rote Bete / Walnuss / Granatapfel</div></div><div class="dish-price">12,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Salat Tamare</div><div class="dish-desc">Rinderfiletstreifen / gebackene Rote Bete / Paprika / Walnussdressing / Granatapfel</div></div><div class="dish-price">18,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Geflämmter Ziegenkäse<span class="veg">Veg</span></div><div class="dish-desc">Ofentomaten / Trüffelhonig / Walnuss / Jonjoli / Balsamico</div></div><div class="dish-price">16,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Burrata &amp; Basilikum-Phali<span class="veg">Veg</span></div><div class="dish-desc">Burrata / Basilikum-Phali-Spiegel / Ofentomaten / Walnuss</div></div><div class="dish-price">15,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Charcho</div><div class="dish-desc">Kräftige Suppe vom Rind / Reis / Tomate / Walnuss / Kräuter</div></div><div class="dish-price">14,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Gambas</div><div class="dish-desc">5 Garnelen / Knoblauch / Kräuter / Brot</div></div><div class="dish-price">22,90&nbsp;€</div></div>
+    </div>
+
+    <div class="menu-block reveal">
+      <h2>Khinkali</h2>
+      <p class="sub">5 Stück handgemachte georgische Teigtaschen / hausgemachte Sauce</p>
+      <div class="dish"><div><div class="dish-name">Khinkali Wagyu-Rind</div></div><div class="dish-price">23,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Khinkali Spinat-Käse<span class="veg">Veg</span></div></div><div class="dish-price">18,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Khinkali Waldpilz<span class="veg">Veg</span></div></div><div class="dish-price">20,90&nbsp;€</div></div>
+    </div>
+
+    <div class="menu-block reveal">
+      <h2>Hauptspeisen</h2>
+      <p class="sub">Aus unserer Küche</p>
+      <div class="dish"><div><div class="dish-name">Grilllachs</div><div class="dish-desc">Limetten-Koriander-Butter / gegrillte Kartoffeln / Tamare Kräutercreme</div></div><div class="dish-price">29,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Chkmeruli</div><div class="dish-desc">Hähnchenbrust / cremige Knoblauch-Sauce / georgischer Butterreis</div></div><div class="dish-price">25,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Wagyu Short Ribs</div><div class="dish-desc">48 Stunden sous-vide gegart / Granatapfeljus / Trüffelpüree</div></div><div class="dish-price">38,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Lobio<span class="veg">Veg</span></div><div class="dish-desc">Bohnen / Tomate / Koriander / Walnuss / Lavash</div></div><div class="dish-price">16,90&nbsp;€</div></div>
+    </div>
+
+    <div class="menu-block reveal">
+      <h2>Vom Lavastein-Grill</h2>
+      <p class="sub">Röstaromen vom offenen Feuer</p>
+      <div class="dish"><div><div class="dish-name">Hähnchen-Shashlik</div><div class="dish-desc">Lavash / eingelegte rote Zwiebel / Adjika-Joghurt-Marinade / Grillsauce</div></div><div class="dish-price">25,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Lula Kebab vom Wagyu-Rind</div><div class="dish-desc">Lavash / eingelegte rote Zwiebel / Jonjoli / Grillsauce</div></div><div class="dish-price">29,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Rinderfilet</div><div class="dish-desc">300 g / Adjika-Kräuterbutter / Grillsauce</div></div><div class="dish-price">39,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Rib Eye</div><div class="dish-desc">300 g / Adjika-Kräuterbutter / Grillsauce</div></div><div class="dish-price">41,90&nbsp;€</div></div>
+    </div>
+
+    <div class="menu-block reveal">
+      <h2>Desserts</h2>
+      <p class="sub">Zum Abschluss</p>
+      <div class="dish"><div><div class="dish-name">Lava-Brownie</div><div class="dish-desc">Flüssiger Kern / Walnusseis / Granatapfel</div></div><div class="dish-price">9,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Granatapfel-Sorbet</div><div class="dish-desc">Pur oder mit Prosecco</div></div><div class="dish-price">6,90&nbsp;/&nbsp;11,90&nbsp;€</div></div>
+    </div>
+
+    <div class="menu-block reveal">
+      <h2>Beilagen</h2>
+      <p class="sub">Zum Ergänzen &amp; Teilen</p>
+      <div class="dish"><div><div class="dish-name">Trüffelpommes</div></div><div class="dish-price">7,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Trüffelpüree</div></div><div class="dish-price">8,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Grillgemüse</div></div><div class="dish-price">6,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Georgischer Butterreis</div></div><div class="dish-price">5,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Gegrillte Kartoffeln &amp; Tamare Kräutercreme</div></div><div class="dish-price">6,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Kleiner georgischer Salat</div></div><div class="dish-price">6,90&nbsp;€</div></div>
+    </div>
+
+    <div class="menu-block reveal">
+      <h2>Saucen &amp; Dips</h2>
+      <p class="sub">Hausgemacht</p>
+      <div class="dish"><div><div class="dish-name">Tamare Grillsauce</div></div><div class="dish-price">4,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Tkemali</div></div><div class="dish-price">4,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Tamare Kräutercreme</div></div><div class="dish-price">4,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Adjika-Kräuterbutter</div></div><div class="dish-price">4,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Limetten-Koriander-Butter</div></div><div class="dish-price">4,90&nbsp;€</div></div>
+      <div class="dish"><div><div class="dish-name">Saucen-Trio</div></div><div class="dish-price">12,90&nbsp;€</div></div>
+    </div>
+
+    <p class="allergen">Alle Preise in Euro inklusive gesetzlicher MwSt. Abweichungen und saisonale Empfehlungen sind möglich.<br>Hinweise zu Allergenen und Zusatzstoffen erhalten Sie gern von unserem Serviceteam.</p>
+  </section>
+
+  <!-- Weinkarte -->
+  <section class="wine">
+    <div class="wrap center reveal" style="margin-bottom:3rem">
+      <span class="eyebrow">Weinkarte</span>
+      <h2 class="section-title">Weine &amp; Champagner</h2>
+      <div class="gold-rule"></div>
+      <p class="menu-intro" style="margin-bottom:0">Hausweine im offenen Ausschank · Georgische Weine · Champagner</p>
+    </div>
+
+    <div class="wine-table reveal">
+      <div class="wine-head"><span>Hausweine im offenen Ausschank</span><span>0,2&nbsp;l</span><span>0,75&nbsp;l</span></div>
+      <div class="wine-row"><div><div class="n">Riesling</div><div class="d">Deutschland / frisch / mineralisch · weiß trocken</div></div><div class="p">7,50&nbsp;€</div><div class="p">28,90&nbsp;€</div></div>
+      <div class="wine-row"><div><div class="n">Grauburgunder</div><div class="d">Deutschland / weich / rund · weiß trocken</div></div><div class="p">7,50&nbsp;€</div><div class="p">28,90&nbsp;€</div></div>
+      <div class="wine-row"><div><div class="n">Weißburgunder</div><div class="d">Deutschland / elegant / mild · weiß trocken</div></div><div class="p">7,50&nbsp;€</div><div class="p">28,90&nbsp;€</div></div>
+      <div class="wine-row"><div><div class="n">Lugana</div><div class="d">Italien / fruchtig / harmonisch · weiß trocken</div></div><div class="p">8,50&nbsp;€</div><div class="p">32,90&nbsp;€</div></div>
+    </div>
+
+    <div class="wine-table reveal">
+      <div class="wine-head"><span>Georgische Weine</span><span>0,2&nbsp;l</span><span>0,75&nbsp;l</span></div>
+      <div class="wine-row"><div><div class="n">Saperavi</div><div class="d">Georgien / kräftig / dunkel · rot trocken</div></div><div class="p">7,50&nbsp;€</div><div class="p">28,90&nbsp;€</div></div>
+      <div class="wine-row"><div><div class="n">Akhasheni</div><div class="d">Georgien / fruchtig / weich · rot lieblich</div></div><div class="p">7,90&nbsp;€</div><div class="p">29,90&nbsp;€</div></div>
+      <div class="wine-row"><div><div class="n">Kindzmarauli</div><div class="d">Georgien / samtig / rund · rot lieblich</div></div><div class="p">7,90&nbsp;€</div><div class="p">31,90&nbsp;€</div></div>
+      <div class="wine-row"><div><div class="n">Tsolikauri</div><div class="d">Georgien / frisch / elegant · weiß trocken</div></div><div class="p">7,90&nbsp;€</div><div class="p">29,90&nbsp;€</div></div>
+      <div class="wine-row"><div><div class="n">Tvishi</div><div class="d">Georgien / aromatisch / weich · weiß lieblich</div></div><div class="p">9,50&nbsp;€</div><div class="p">34,90&nbsp;€</div></div>
+      <div class="wine-row"><div><div class="n">Saperavi Bio Qvevri</div><div class="d">Georgien / Qvevri / Premium · rot trocken</div></div><div class="p">9,90&nbsp;€</div><div class="p">36,90&nbsp;€</div></div>
+    </div>
+
+    <div class="wine-table reveal">
+      <div class="wine-head"><span>Schaumwein &amp; Champagner</span><span>0,2&nbsp;l</span><span>0,75&nbsp;l</span></div>
+      <div class="wine-row"><div><div class="n">Prosecco Frizzante DOC</div><div class="d">Italien / fein perlend / Aperitif</div></div><div class="p">5,90&nbsp;€</div><div class="p">29,90&nbsp;€</div></div>
+      <div class="wine-row"><div><div class="n">Ruinart Brut</div><div class="d">Champagne / elegant / feinperlig</div></div><div class="p">–</div><div class="p">149,00&nbsp;€</div></div>
+      <div class="wine-row"><div><div class="n">Ruinart Rosé</div><div class="d">Champagne / fruchtig / elegant</div></div><div class="p">–</div><div class="p">169,00&nbsp;€</div></div>
+    </div>
+
+    <p class="wine-note reveal">
+      <strong>Empfehlung des Hauses</strong><br>
+      Zu Fisch &amp; Vorspeisen: Tsolikauri oder Riesling · Zu Fleisch &amp; Schmorgerichten: Saperavi oder Saperavi Bio Qvevri · Zu Dessert &amp; Käse: Tvishi oder Kindzmarauli<br>
+      <em style="font-size:.78rem">Alle Preise in Euro inklusive gesetzlicher MwSt. · Jahrgangs- und Sortenänderungen vorbehalten.</em>
+    </p>
+    <p class="center reveal" style="margin-top:3rem"><a class="btn gold" href="#/reservierung">Tisch reservieren</a></p>
+  </section>
+</div>
+
+<!-- ================= RESERVIERUNG ================= -->
+<div class="page" id="page-reservierung">
+  <section style="padding-top:10rem">
+    <div class="wrap">
+      <div class="center reveal">
+        <span class="eyebrow">Reservierung</span>
+        <h1 class="section-title">Ihren Tisch reservieren</h1>
+        <div class="gold-rule"></div>
+        <p class="lead" style="margin:0 auto">Wählen Sie Datum, Uhrzeit und Personenzahl – Sie erhalten sofort eine Bestätigung.</p>
+      </div>
+
+      <!-- Lightspeed-Reservierungssystem -->
+      <div class="booking-frame reveal">
+        <iframe
+          src="https://mylightspeed.app/reservation/e66ae4b7-0139-44be-914f-0f2e8c7d010f/reservation"
+          title="Tisch reservieren – Tamare Restaurant Düsseldorf"
+          loading="lazy"
+          allow="payment">
+        </iframe>
+      </div>
+      <p class="booking-fallback">
+        Wird das Buchungsfenster nicht angezeigt?
+        <a href="https://mylightspeed.app/reservation/e66ae4b7-0139-44be-914f-0f2e8c7d010f/reservation" target="_blank" rel="noopener" style="color:var(--gold-deep);text-decoration:underline">Hier direkt reservieren&nbsp;↗</a>
+      </p>
+
+      <p class="policy">
+        Für Gesellschaften ab 7 Personen bitten wir um telefonische Anfrage:
+        <a href="tel:+4921146872090" style="color:var(--gold-deep)">+49&nbsp;211&nbsp;46872090</a>.
+        Reservierte Tische halten wir 15&nbsp;Minuten frei.
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- ================= KONTAKT ================= -->
+<div class="page" id="page-kontakt">
+  <section style="padding-top:10rem">
+    <div class="wrap split">
+      <div class="reveal">
+        <span class="eyebrow">Kontakt</span>
+        <h1 class="section-title">So erreichen Sie uns</h1>
+        <div class="gold-rule"></div>
+        <div style="line-height:2.3;color:var(--ink-soft)">
+          <p><strong style="color:var(--ink);font-weight:400">Tamare Restaurant</strong><br>Grafenberger Allee 277<br>40237 Düsseldorf</p>
+          <!-- KONTAKTDATEN -->
+          <p style="margin-top:1.5rem"><a href="tel:+4921146872090" style="color:var(--gold-deep);text-decoration:underline">+49 211 46872090</a><br>
+          <a href="mailto:info@tamare-restaurant.de" style="color:var(--gold-deep);text-decoration:underline">info@tamare-restaurant.de</a></p>
+          <p style="margin-top:1.5rem"><strong style="color:var(--ink);font-weight:400">Öffnungszeiten</strong><br>
+          Mo, Mi, Do · 16:00 – 22:00 Uhr (Küche bis 21:30)<br>
+          Fr · 16:00 – 23:00 Uhr (Küche bis 22:30)<br>
+          Sa · 12:00 – 23:00 Uhr (Küche bis 22:30)<br>
+          So · 12:00 – 22:00 Uhr (Küche bis 21:30)<br>
+          Dienstag Ruhetag</p>
+          <p style="margin-top:1.5rem"><strong style="color:var(--ink);font-weight:400">Anfahrt</strong><br>Gut erreichbar über die Grafenberger Allee (B7);<br>Straßenbahn-Haltestellen in unmittelbarer Nähe.</p>
+          <p style="margin-top:1.5rem">
+            <a href="#/reservierung" style="color:var(--gold-deep);text-decoration:underline">Tisch reservieren</a> ·
+            <a href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener" style="color:var(--gold-deep);text-decoration:underline">Instagram ↗</a>
+          </p>
+        </div>
+      </div>
+      <img class="reveal d1" src="bilder/badridzhani.jpg" alt="Gedeckter Tisch im Tamare Restaurant">
+      <!-- Optional: Google-Maps-Karte erst nach Cookie-Einwilligung einbinden (Zwei-Klick-Lösung) -->
+    </div>
+  </section>
+</div>
+
+<!-- ================= IMPRESSUM ================= -->
+<div class="page" id="page-impressum">
+  <section style="padding-top:10rem">
+    <div class="legal">
+      <h1>Impressum</h1>
+      <p class="legal-warn">Entwurf mit Platzhaltern nach § 5 DDG / § 18 MStV. Bitte alle <span class="todo">[markierten Felder]</span> ausfüllen und vor Veröffentlichung rechtlich prüfen lassen.</p>
+
+      <h2>Angaben gemäß § 5 DDG</h2>
+      <p><span class="todo">[Tamare Restaurant – Inhaber:in oder Firmenname mit Rechtsform, z. B. GmbH / GbR / e. K.]</span><br>
+      Grafenberger Allee 277<br>40237 Düsseldorf</p>
+
+      <h2>Vertreten durch</h2>
+      <p><span class="todo">[Vor- und Nachname der Geschäftsführung / Inhaber:in]</span></p>
+
+      <h2>Kontakt</h2>
+      <p>Telefon: +49 211 46872090<br>
+      E-Mail: info@tamare-restaurant.de</p>
+
+      <h2>Registereintrag (falls vorhanden)</h2>
+      <p>Eintragung im Handelsregister · Registergericht: <span class="todo">[Amtsgericht Düsseldorf]</span> · Registernummer: <span class="todo">[HRB 00000]</span></p>
+
+      <h2>Umsatzsteuer-ID</h2>
+      <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: <span class="todo">[DE000000000]</span></p>
+
+      <h2>Aufsichtsbehörde / Erlaubnis</h2>
+      <p>Zuständige Behörde für das Gaststättengewerbe: <span class="todo">[Ordnungsamt der Landeshauptstadt Düsseldorf]</span></p>
+
+      <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+      <p><span class="todo">[Vor- und Nachname, Anschrift wie oben]</span></p>
+
+      <h2>EU-Streitschlichtung</h2>
+      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>. Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+
+      <h2>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+      <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. <span class="todo">[Falls doch: entsprechend anpassen.]</span></p>
+
+      <h2>Bildnachweise</h2>
+      <p>Fotos und Videos: Tamare Restaurant, Düsseldorf. <span class="todo">[Ggf. Fotograf:in ergänzen.]</span><br>
+      Landschaftsfotos: Unsplash (Unsplash-Lizenz) – Fotografen: Patrick Schneider, Tomáš Malík, Joni Jiniani.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ================= DATENSCHUTZ ================= -->
+<div class="page" id="page-datenschutz">
+  <section style="padding-top:10rem">
+    <div class="legal">
+      <h1>Datenschutzerklärung</h1>
+      <p class="legal-warn">Entwurf auf Basis der DSGVO mit Platzhaltern. Die Erklärung muss an die tatsächlich eingesetzten Dienste angepasst und rechtlich geprüft werden.</p>
+
+      <h2>1. Verantwortlicher</h2>
+      <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br>
+      Tamare Restaurant <span class="todo">[Inhaber:in / Rechtsform wird ergänzt]</span><br>
+      Grafenberger Allee 277, 40237 Düsseldorf<br>
+      Telefon: +49 211 46872090 · E-Mail: info@tamare-restaurant.de</p>
+
+      <h2>2. Allgemeines zur Datenverarbeitung</h2>
+      <p>Wir verarbeiten personenbezogene Daten unserer Besucherinnen und Besucher grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Rechtsgrundlagen sind Art. 6 Abs. 1 lit. a DSGVO (Einwilligung), lit. b DSGVO (Vertrag bzw. vorvertragliche Maßnahmen, z. B. Reservierungen) und lit. f DSGVO (berechtigtes Interesse am sicheren Betrieb der Website).</p>
+
+      <h2>3. Server-Logfiles</h2>
+      <p>Beim Aufruf der Website erhebt unser Hosting-Anbieter <span class="todo">[Name des Hosters, Anschrift]</span> automatisch Informationen in sogenannten Server-Logfiles (IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite, Browsertyp, Betriebssystem, Referrer-URL). Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Die Logfiles werden nach <span class="todo">[z. B. 7 Tagen]</span> gelöscht. Mit dem Hoster besteht ein Vertrag über Auftragsverarbeitung (Art. 28 DSGVO).</p>
+
+      <h2>4. Online-Reservierung über Lightspeed</h2>
+      <p>Für Tischreservierungen nutzen wir das Reservierungssystem von Lightspeed (Lightspeed Commerce Inc., 700 Saint-Antoine Est, Suite 300, Montréal, Québec, H2Y 1A6, Kanada). Das Buchungsfenster wird auf unserer Reservierungsseite als eingebetteter Inhalt (iFrame) geladen; dabei wird eine Verbindung zu Servern von Lightspeed hergestellt und Ihre IP-Adresse übertragen.</p>
+      <p>Die von Ihnen im Buchungsfenster angegebenen Daten (Name, Kontaktdaten, Datum, Uhrzeit, Personenzahl, ggf. Anmerkungen) werden zur Abwicklung Ihrer Reservierung verarbeitet (Art. 6 Abs. 1 lit. b DSGVO). Mit Lightspeed besteht ein Vertrag über Auftragsverarbeitung nach Art. 28 DSGVO. Weitere Informationen finden Sie in der Datenschutzerklärung von Lightspeed unter <a href="https://www.lightspeedhq.com/privacy-policy/" target="_blank" rel="noopener">lightspeedhq.com/privacy-policy</a>.</p>
+
+      <h2>5. Kontaktaufnahme</h2>
+      <p>Bei Kontaktaufnahme per E-Mail oder Telefon werden Ihre Angaben zur Bearbeitung der Anfrage sowie für Anschlussfragen gespeichert (Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO). Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+
+      <h2>6. Cookies</h2>
+      <p>Diese Website verwendet technisch notwendige Cookies bzw. vergleichbare Speichertechniken (z. B. zur Speicherung Ihrer Cookie-Entscheidung). Das eingebettete Reservierungssystem von Lightspeed kann eigene, für die Buchungsfunktion erforderliche Cookies setzen. Rechtsgrundlage ist § 25 Abs. 2 TDDDG sowie Art. 6 Abs. 1 lit. f DSGVO. <span class="todo">[Falls Analyse- oder Marketing-Dienste eingesetzt werden: hier ergänzen und Einwilligung über den Cookie-Banner einholen.]</span></p>
+
+      <h2>7. Externe Dienste und Inhalte</h2>
+      <ul>
+        <li><strong>Google Fonts:</strong> Zur einheitlichen Darstellung von Schriftarten nutzt diese Seite Schriften von Google (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Beim Aufruf werden Verbindungen zu Google-Servern hergestellt; dabei wird Ihre IP-Adresse übertragen.</li>
+        <li><strong>Unsplash-Bilder:</strong> Einzelne Landschaftsfotos werden über das Content Delivery Network von Unsplash (Unsplash Inc., Montreal, Kanada) geladen; dabei wird Ihre IP-Adresse an Unsplash übertragen.</li>
+        <li><strong>Lightspeed Reservierung:</strong> siehe Ziffer 4.</li>
+        <li><strong>Instagram-Verlinkung:</strong> Unsere Website enthält einen Link zu unserem Instagram-Profil (Meta Platforms Ireland Ltd.). Es handelt sich um eine reine Verlinkung; Daten werden erst beim Aufruf von Instagram übertragen.</li>
+      </ul>
+
+      <h2>8. Ihre Rechte</h2>
+      <p>Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten: Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch gegen die Verarbeitung (Art. 21). Erteilte Einwilligungen können Sie jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3 DSGVO).</p>
+
+      <h2>9. Beschwerderecht</h2>
+      <p>Ihnen steht ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu. Zuständig für Nordrhein-Westfalen ist die Landesbeauftragte für Datenschutz und Informationsfreiheit NRW, Kavalleriestraße 2–4, 40213 Düsseldorf.</p>
+
+      <h2>10. Aktualität</h2>
+      <p>Stand dieser Datenschutzerklärung: Juli 2026. Wir passen diese Erklärung an, sobald sich die Datenverarbeitung auf dieser Website ändert.</p>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="#/" class="footlogo" style="display:inline-block">
+        <img src="bilder/logo-frei.png" alt="TAMARE Restaurant">
+      </a>
+      <p style="margin-top:1.2rem;max-width:24rem">Fine Dining Experience – kaukasisch inspirierte &amp; mediterrane Küche im Herzen von Düsseldorf.</p>
+    </div>
+    <div>
+      <h4>Besuch</h4>
+      <p>Grafenberger Allee 277<br>40237 Düsseldorf<br>Mo, Mi, Do 16–22 · Fr 16–23<br>Sa 12–23 · So 12–22 · Di Ruhetag</p>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <p><a href="tel:+4921146872090">+49 211 46872090</a><br>
+      <a href="mailto:info@tamare-restaurant.de">info@tamare-restaurant.de</a><br>
+      <a href="#/reservierung">Tisch reservieren</a><br>
+      <a href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener">Instagram</a></p>
+    </div>
+    <div>
+      <h4>Rechtliches</h4>
+      <p><a href="#/impressum">Impressum</a><br>
+      <a href="#/datenschutz">Datenschutz</a><br>
+      <a href="#" id="cookieReopen">Cookie-Einstellungen</a></p>
+    </div>
+  </div>
+  <div class="footline">
+    <span>© <span id="year"></span> Tamare Restaurant · Düsseldorf</span>
+    <span>Alle Preise inkl. MwSt.</span>
+  </div>
+</footer>
+
+<!-- ================= COOKIE-BANNER ================= -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie-Hinweis">
+  <p><strong>Cookies &amp; Datenschutz.</strong> Wir verwenden technisch notwendige Speichertechniken. Unser Reservierungssystem (Lightspeed) setzt für die Buchungsfunktion erforderliche Cookies. Details in unserer <a href="#/datenschutz">Datenschutzerklärung</a>.</p>
+  <div class="row">
+    <button class="acc" id="cookieAccept">Einverstanden</button>
+    <button id="cookieEssential">Nur notwendige</button>
+  </div>
+</div>
+
+<script>
+/* ---------- Hash-Routing ---------- */
+var pages=['home','restaurant','speisekarte','reservierung','kontakt','impressum','datenschutz'];
+function route(){
+  var h=(location.hash||'#/').replace('#/','')||'home';
+  if(pages.indexOf(h)<0)h='home';
+  pages.forEach(function(p){
+    var el=document.getElementById('page-'+p);
+    if(el)el.classList.toggle('visible',p===h);
+  });
+  document.querySelectorAll('nav a[data-page]').forEach(function(a){
+    a.classList.toggle('active',a.getAttribute('data-page')===h);
+  });
+  document.getElementById('nav').classList.remove('open');
+  document.getElementById('header').classList.toggle('light',h!=='home');
+  window.scrollTo(0,0);
+  observeReveals();
+}
+window.addEventListener('hashchange',route);
+
+/* ---------- Header & Burger ---------- */
+var header=document.getElementById('header');
+window.addEventListener('scroll',function(){header.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+document.getElementById('burger').addEventListener('click',function(){
+  document.getElementById('nav').classList.toggle('open');
+});
+
+/* ---------- Scroll-Reveal (IntersectionObserver) ---------- */
+var io=('IntersectionObserver' in window)?new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in-view');io.unobserve(e.target)}
+  });
+},{threshold:.16,rootMargin:'0px 0px -6% 0px'}):null;
+function observeReveals(){
+  document.querySelectorAll('.page.visible .reveal:not(.in-view)').forEach(function(el){
+    if(io)io.observe(el);else el.classList.add('in-view');
+  });
+}
+
+/* ---------- Sanfter Parallax für Hero & Bänder ---------- */
+var px=[];
+function collectParallax(){
+  px=[].slice.call(document.querySelectorAll('.page.visible [data-parallax]'));
+}
+var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function onScroll(){
+  if(reduceMotion)return;
+  px.forEach(function(el){
+    var r=el.parentElement.getBoundingClientRect();
+    if(r.bottom<0||r.top>innerHeight)return;
+    var speed=parseFloat(el.getAttribute('data-parallax'))||.2;
+    var offset=(r.top+r.height/2-innerHeight/2)*speed;
+    var img=el.querySelector('img');
+    if(img)img.style.transform='translateY('+offset.toFixed(1)+'px) scale(1.06)';
+  });
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+window.addEventListener('resize',onScroll);
+var _route=route;
+route=function(){_route();collectParallax();onScroll()};
+route();
+
+/* ---------- Hero-Video-Sequenz (eigene Tamare-Aufnahmen) ----------
+   Jeder Clip läuft genau EINMAL, kurz vor seinem Ende blendet der
+   nächste (bereits fertig vorgeladene) Clip nahtlos ein – die ganze
+   Sequenz läuft als Dauerschleife. Zeitlupe (0,5x) ist in die Dateien
+   eingerechnet (60 fps Quelle -> butterweiche 30 fps).
+   Reihenfolge einfach hier umsortieren. */
+var heroClips=[
+  'videos/img_2133.mp4',  /* Dessert-Anrichten */
+  'videos/img_2116.mp4',  /* Wagyu Short Ribs – Anrichten */
+  'videos/img_2101.mp4',  /* Khinkali */
+  'videos/img_8338.mp4',  /* Klavier – Ambiente */
+  'videos/img_9735.mp4',  /* Salat Tamare – Anrichten */
+  'videos/img_2128.mp4',  /* Garnelen am Feuer */
+  'videos/img_3979.mp4'   /* Grillgemüse */
+];
+(function(){
+  if(reduceMotion)return;
+  if(navigator.connection && navigator.connection.saveData)return;
+  var vids=[].slice.call(document.querySelectorAll('.hero-video'));
+  if(vids.length<2)return;
+  var idx=0,active=0,ready=[false,false],switching=false;
+  function preload(slot,src){
+    ready[slot]=false;
+    var v=vids[slot];
+    v.src=src;v.load();
+    var ok=function(){v.removeEventListener('canplaythrough',ok);ready[slot]=true};
+    v.addEventListener('canplaythrough',ok);
+    v.addEventListener('error',function(){ready[slot]=false},{once:true});
+  }
+  function crossfadeTo(slot){
+    if(switching)return;switching=true;
+    var v=vids[slot];
+    v.currentTime=0;
+    var p=v.play();if(p&&p.catch)p.catch(function(){});
+    v.classList.add('on');
+    var old=vids[1-slot];
+    old.classList.remove('on');
+    setTimeout(function(){
+      old.pause();
+      switching=false;
+      /* nächsten Clip in den freien Slot vorladen */
+      var nextIdx=(idx+1)%heroClips.length;
+      preload(1-slot,heroClips[nextIdx]);
+    },2600);
+    active=slot;
+  }
+  function watch(v,slot){
+    v.addEventListener('timeupdate',function(){
+      if(slot!==active||switching)return;
+      if(!v.duration)return;
+      var rest=v.duration-v.currentTime;
+      /* 1,8 s vor Clip-Ende weich zum nächsten übergehen */
+      if(rest<=1.2&&ready[1-slot]){
+        idx=(idx+1)%heroClips.length;
+        crossfadeTo(1-slot);
+      }
+    });
+    v.addEventListener('ended',function(){
+      /* Fallback: Clip endet, nächster noch nicht bereit -> letzter Frame steht,
+         sobald bereit wird gewechselt */
+      if(slot!==active)return;
+      var t=setInterval(function(){
+        if(ready[1-slot]){clearInterval(t);idx=(idx+1)%heroClips.length;crossfadeTo(1-slot)}
+      },300);
+    });
+  }
+  vids.forEach(function(v,i){watch(v,i)});
+  /* Start: Clip 0 laden & zeigen, Clip 1 sofort still vorladen */
+  preload(0,heroClips[0]);
+  var startCheck=setInterval(function(){
+    if(ready[0]){
+      clearInterval(startCheck);
+      crossfadeTo(0);
+      preload(1,heroClips[1]);
+    }
+  },200);
+})();
+
+/* ---------- Intro: Emblem auf dunklem Grund, dann Übergang zur Seite ---------- */
+(function(){
+  var intro=document.getElementById('intro');
+  if(!intro)return;
+  if(reduceMotion){intro.classList.add('done');return}
+  document.body.classList.add('intro-lock');
+  setTimeout(function(){
+    intro.classList.add('done');
+    document.body.classList.remove('intro-lock');
+  },2600);
+})();
+
+/* ---------- Sprache: Deutsch / Englisch ---------- */
+var i18n={
+"Start":"Home",
+"Das Restaurant":"The Restaurant",
+"Speise- & Weinkarte":"Food & Wine",
+"Kontakt":"Contact",
+"Tisch reservieren":"Reserve a Table",
+"Fine Dining Experience · Düsseldorf":"Fine Dining Experience · Düsseldorf",
+"Kaukasisch inspirierte & mediterrane Küche":"Caucasian-inspired & Mediterranean cuisine",
+"Zur Speisekarte":"View the Menu",
+"Entdecken":"Discover",
+"„Wo Walnuss, Granatapfel und Feuer sich begegnen:":"“Where walnut, pomegranate and fire meet:",
+"die Aromen des Kaukasus, neu erzählt am Mittelmeer.\"":"the flavours of the Caucasus, retold by the Mediterranean.”",
+"Tamare · Düsseldorf":"Tamare · Düsseldorf",
+"Kapitel I":"Chapter I",
+"Vom Kaukasus":"From the Caucasus",
+"an den Rhein":"to the Rhine",
+"Zwischen Schwarzem Meer und Kaspischem Meer, unter den Fünftausendern des Großen Kaukasus, liegt eine der ältesten Ess- und Weinkulturen der Welt. Hier wird seit 8.000 Jahren Wein in Qvevri-Amphoren vergoren, hier bedeutet ein gedeckter Tisch – die Supra – Einladung, Fest und Freundschaft zugleich.":"Between the Black Sea and the Caspian Sea, beneath the five-thousand-metre peaks of the Greater Caucasus, lies one of the world's oldest food and wine cultures. Wine has been fermented in qvevri amphorae here for 8,000 years, and a laid table – the supra – means invitation, celebration and friendship all at once.",
+"Diese Geschichte bringen wir nach Düsseldorf: an die Grafenberger Allee, mitten ins Rheinland.":"We bring this story to Düsseldorf: to Grafenberger Allee, in the heart of the Rhineland.",
+"Kapitel II":"Chapter II",
+"Zwei Welten,":"Two worlds,",
+"eine Handschrift":"one signature",
+"Unsere Küche verbindet die Tiefe des Kaukasus – Walnuss, Koriander, Granatapfel, Adjika und das offene Feuer – mit der Leichtigkeit des Mittelmeers.":"Our kitchen unites the depth of the Caucasus – walnut, coriander, pomegranate, adjika and the open fire – with the lightness of the Mediterranean.",
+"Jedes Gericht entsteht aus sorgfältig ausgewählten Produkten: vom handgefalteten Khinkali bis zu 48 Stunden sous-vide gegarten Wagyu Short Ribs vom Lavastein-Grill.":"Every dish is built on carefully selected produce: from hand-folded khinkali to wagyu short ribs cooked sous-vide for 48 hours and finished on the lava stone grill.",
+"Mehr erfahren":"Learn More",
+"Kapitel III":"Chapter III",
+"Warum Tamare?":"Why Tamare?",
+"Der Name ist eine Liebeserklärung: Auf Reisen durch Georgien haben sich unser Inhaber und seine Frau in dieses Land verliebt – in die Landschaften zwischen Schwarzem Meer und Kaukasus, in die Gastfreundschaft, in die Küche.":"The name is a declaration of love: travelling through Georgia, our owner and his wife fell in love with this country – with its landscapes between the Black Sea and the Caucasus, its hospitality, its cuisine.",
+"„Tamare\" erinnert an Königin Tamar, unter der Georgien im 12. Jahrhundert sein Goldenes Zeitalter erlebte. Ihr Name steht bis heute für Großzügigkeit und Kultur – genau das, was wir an unseren Tisch nach Düsseldorf bringen.":"“Tamare” recalls Queen Tamar, under whom Georgia experienced its Golden Age in the 12th century. To this day her name stands for generosity and culture – exactly what we bring to our table in Düsseldorf.",
+"Aus unserer Küche":"From Our Kitchen",
+"Handgemachte georgische Teigtaschen mit hausgemachter Sauce – Wagyu-Rind, Spinat-Käse oder Waldpilz.":"Handmade Georgian dumplings with homemade sauce – wagyu beef, spinach & cheese or wild mushroom.",
+"48 Stunden sous-vide gegart, mit Granatapfeljus und Trüffelpüree.":"Cooked sous-vide for 48 hours, with pomegranate jus and truffle mash.",
+"Basilikum, Karotte und Rote Bete mit Walnuss und Granatapfel – vegetarischer Klassiker.":"Basil, carrot and beetroot with walnut and pomegranate – a vegetarian classic.",
+"Rinderfilet vom Grill":"Grilled Beef Fillet",
+"Gegrillte Garnelen":"Grilled Prawns",
+"Vom Lavastein-Grill, mit Rosmarin, Knoblauch und Tomate.":"From the lava stone grill, with rosemary, garlic and tomato.",
+"Kräftige Suppe vom Rind – mit Reis, Tomate, Walnuss und frischen Kräutern.":"Rich beef soup – with rice, tomato, walnut and fresh herbs.",
+"Vom Lavastein-Grill – mit Lavash, eingelegter roter Zwiebel und Adjika-Joghurt-Marinade.":"From the lava stone grill – with lavash, pickled red onion and adjika yoghurt marinade.",
+"300 g vom Lavastein-Grill, mit Adjika-Kräuterbutter und Grillsauce.":"300 g from the lava stone grill, with adjika herb butter and grill sauce.",
+"Zur Karte":"View Menu",
+"Die ganze Karte entdecken":"Discover the Full Menu",
+"Die Karte entdecken":"Discover the menu",
+"Die Einladung":"The Invitation",
+"„Ein Gast ist ein Geschenk Gottes\"":"“A guest is a gift from God”",
+"– so sagt man in Georgien.":"– as they say in Georgia.",
+"Seien Sie unser Gast.":"Be our guest.",
+"Öffnungszeiten":"Opening Hours",
+"Wann Sie uns finden":"When to Find Us",
+"Montag":"Monday","Dienstag":"Tuesday","Mittwoch":"Wednesday","Donnerstag":"Thursday","Freitag":"Friday","Samstag":"Saturday","Sonntag":"Sunday",
+"Ruhetag":"Closed",
+"16:00 – 22:00 Uhr":"4:00 – 10:00 pm","16:00 – 23:00 Uhr":"4:00 – 11:00 pm","12:00 – 23:00 Uhr":"12:00 – 11:00 pm","12:00 – 22:00 Uhr":"12:00 – 10:00 pm",
+"Küche bis 21:30":"Kitchen until 9:30 pm","Küche bis 22:30":"Kitchen until 10:30 pm",
+"Adresse":"Address",
+"Wo Sie uns finden":"Where to Find Us",
+"Reservierung":"Reservations",
+"Ihr Tisch wartet":"Your Table Awaits",
+"Online in unter einer Minute":"Online in under a minute",
+"mit sofortiger Bestätigung.":"with instant confirmation.",
+"Jetzt reservieren →":"Reserve now →",
+"Sprechen Sie uns an":"Get in Touch",
+"Willkommen im Tamare":"Welcome to Tamare",
+"Fine Dining an der Grafenberger Allee: Das Tamare bringt die Gastfreundschaft des Kaukasus und die Aromen des Mittelmeers nach Düsseldorf – in einem Rahmen, der zum Verweilen einlädt.":"Fine dining on Grafenberger Allee: Tamare brings the hospitality of the Caucasus and the flavours of the Mediterranean to Düsseldorf – in a setting made for lingering.",
+"Das Ambiente":"The Ambiance",
+"Ein Raum zum Verweilen":"A Room to Linger",
+"Warme Hölzer, gedämpftes Licht und samtige Sessel in Rosé und Salbeigrün: Unser Gastraum an der Grafenberger Allee verbindet großzügige Fensterfronten mit der Intimität einzelner Nischen – lichtdurchflutet und offen am Tag, kerzenwarm am Abend.":"Warm woods, soft light and velvet chairs in rose and sage: our dining room on Grafenberger Allee combines generous window fronts with the intimacy of secluded nooks – light-filled and open by day, candle-warm at night.",
+"Ob Dinner zu zweit, Familienfeier oder ein Abend mit Freunden – hier findet jeder Anlass seinen Platz.":"Whether dinner for two, a family celebration or an evening with friends – every occasion finds its place here.",
+"Wenn die Lichter gedimmt sind,":"When the lights are dimmed,",
+"beginnt der Abend bei uns.":"the evening begins with us.",
+"Kaukasische Gastfreundschaft · mitten in Düsseldorf":"Caucasian hospitality · in the heart of Düsseldorf",
+"Cheesecake & Sanddorntee":"Cheesecake & Sea Buckthorn Tea",
+"Die Philosophie":"The Philosophy",
+"Supra – der gedeckte Tisch":"Supra – the Laid Table",
+"In Georgien ist ein gedeckter Tisch mehr als eine Mahlzeit: Er ist Einladung, Fest und Begegnung zugleich. Diese Idee tragen wir ins Tamare – mit Gerichten, die zum Teilen gemacht sind, und einem Service, der Gastfreundschaft ernst nimmt.":"In Georgia, a laid table is more than a meal: it is invitation, celebration and encounter in one. We carry this idea into Tamare – with dishes made for sharing and service that takes hospitality seriously.",
+"Walnusscremes und Phali, handgefaltete Khinkali, Fleisch und Fisch vom Lavastein-Grill – begleitet von georgischen Weinen aus der Qvevri und Klassikern aus Deutschland und Italien.":"Walnut creams and phali, hand-folded khinkali, meat and fish from the lava stone grill – accompanied by Georgian qvevri wines and classics from Germany and Italy.",
+"Das Handwerk":"The Craft",
+"Feuer & Präzision":"Fire & Precision",
+"Unser Lavastein-Grill gibt Rinderfilet, Rib Eye, Shashlik und Garnelen ihre charakteristischen Röstaromen. Daneben arbeitet die Küche mit Zeit und Geduld: Short Ribs garen 48 Stunden sous-vide, Saucen und Cremes entstehen täglich frisch im Haus.":"Our lava stone grill gives beef fillet, rib eye, shashlik and prawns their distinctive char. Alongside it, the kitchen works with time and patience: short ribs are cooked sous-vide for 48 hours, sauces and creams are made fresh in-house every day.",
+"Acht Jahrtausende Weinkultur.":"Eight millennia of wine culture.",
+"Ein Abend an unserem Tisch.":"One evening at our table.",
+"Georgische Weine aus der Qvevri · siehe Weinkarte":"Georgian qvevri wines · see wine list",
+"Einblicke":"Impressions",
+"Momente aus dem Tamare":"Moments from Tamare",
+"Hausgemachter Cheesecake":"Homemade Cheesecake",
+"Folgen Sie uns auf Instagram":"Follow Us on Instagram",
+"Folgt uns auf Instagram":"Follow Us on Instagram",
+"Neue Gerichte, Einblicke aus der Küche und besondere Abende – zuerst auf Instagram.":"New dishes, glimpses from the kitchen and special evenings – first on Instagram.",
+"Auf Instagram folgen":"Follow on Instagram",
+"Abendkarte":"Evening Menu",
+"Speisekarte":"Menu",
+"Kaukasisch inspiriert, mediterran verfeinert. Gerichte mit":"Caucasian-inspired, Mediterranean-refined. Dishes marked",
+"sind vegetarisch.":"are vegetarian.",
+"Speisekarte als PDF":"Food Menu (PDF)",
+"Weinkarte als PDF":"Wine List (PDF)",
+"Brot & Einstieg":"Bread & Beginnings",
+"Zum Ankommen":"To arrive",
+"Ofenbrot Tamare":"Tamare Oven Bread",
+"Warmes Steinofenbaguette / Adjika-Kräuterbutter / Tamare Kräutercreme / Limetten-Koriander-Butter":"Warm stone-oven baguette / adjika herb butter / Tamare herb cream / lime-coriander butter",
+"Vorspeisen":"Starters",
+"Kalt & warm":"Cold & warm",
+"Georgischer Salat Tamare":"Georgian Salad Tamare",
+"Tomaten / Gurken / eingelegte rote Zwiebel / Koriander / Walnuss-Vinaigrette":"Tomatoes / cucumber / pickled red onion / coriander / walnut vinaigrette",
+"Auberginenröllchen / Walnusscreme / Tamare Kräutercreme / Korianderöl / Granatapfel":"Aubergine rolls / walnut cream / Tamare herb cream / coriander oil / pomegranate",
+"Basilikum / Karotte / Rote Bete / Walnuss / Granatapfel":"Basil / carrot / beetroot / walnut / pomegranate",
+"Rinderfiletstreifen / gebackene Rote Bete / Paprika / Walnussdressing / Granatapfel":"Beef fillet strips / baked beetroot / bell pepper / walnut dressing / pomegranate",
+"Geflämmter Ziegenkäse":"Flamed Goat Cheese",
+"Ofentomaten / Trüffelhonig / Walnuss / Jonjoli / Balsamico":"Oven tomatoes / truffle honey / walnut / jonjoli / balsamic",
+"Burrata / Basilikum-Phali-Spiegel / Ofentomaten / Walnuss":"Burrata / basil phali mirror / oven tomatoes / walnut",
+"Kräftige Suppe vom Rind / Reis / Tomate / Walnuss / Kräuter":"Rich beef soup / rice / tomato / walnut / herbs",
+"5 Garnelen / Knoblauch / Kräuter / Brot":"5 prawns / garlic / herbs / bread",
+"5 Stück handgemachte georgische Teigtaschen / hausgemachte Sauce":"5 handmade Georgian dumplings / homemade sauce",
+"Khinkali Wagyu-Rind":"Khinkali Wagyu Beef",
+"Khinkali Spinat-Käse":"Khinkali Spinach & Cheese",
+"Khinkali Waldpilz":"Khinkali Wild Mushroom",
+"Hauptspeisen":"Main Courses",
+"Grilllachs":"Grilled Salmon",
+"Limetten-Koriander-Butter / gegrillte Kartoffeln / Tamare Kräutercreme":"Lime-coriander butter / grilled potatoes / Tamare herb cream",
+"Hähnchenbrust / cremige Knoblauch-Sauce / georgischer Butterreis":"Chicken breast / creamy garlic sauce / Georgian butter rice",
+"48 Stunden sous-vide gegart / Granatapfeljus / Trüffelpüree":"Cooked sous-vide for 48 hours / pomegranate jus / truffle mash",
+"Bohnen / Tomate / Koriander / Walnuss / Lavash":"Beans / tomato / coriander / walnut / lavash",
+"Vom Lavastein-Grill":"From the Lava Stone Grill",
+"Röstaromen vom offenen Feuer":"Char from the open fire",
+"Hähnchen-Shashlik":"Chicken Shashlik",
+"Lavash / eingelegte rote Zwiebel / Adjika-Joghurt-Marinade / Grillsauce":"Lavash / pickled red onion / adjika yoghurt marinade / grill sauce",
+"Lula Kebab vom Wagyu-Rind":"Wagyu Beef Lula Kebab",
+"Lavash / eingelegte rote Zwiebel / Jonjoli / Grillsauce":"Lavash / pickled red onion / jonjoli / grill sauce",
+"Rinderfilet":"Beef Fillet",
+"300 g / Adjika-Kräuterbutter / Grillsauce":"300 g / adjika herb butter / grill sauce",
+"Zum Abschluss":"To finish",
+"Flüssiger Kern / Walnusseis / Granatapfel":"Molten centre / walnut ice cream / pomegranate",
+"Granatapfel-Sorbet":"Pomegranate Sorbet",
+"Pur oder mit Prosecco":"Pure or with prosecco",
+"Beilagen":"Sides",
+"Zum Ergänzen & Teilen":"To add & share",
+"Trüffelpommes":"Truffle Fries",
+"Trüffelpüree":"Truffle Mash",
+"Grillgemüse":"Grilled Vegetables",
+"Georgischer Butterreis":"Georgian Butter Rice",
+"Gegrillte Kartoffeln & Tamare Kräutercreme":"Grilled Potatoes & Tamare Herb Cream",
+"Kleiner georgischer Salat":"Small Georgian Salad",
+"Saucen & Dips":"Sauces & Dips",
+"Hausgemacht":"Homemade",
+"Tamare Grillsauce":"Tamare Grill Sauce",
+"Tamare Kräutercreme":"Tamare Herb Cream",
+"Adjika-Kräuterbutter":"Adjika Herb Butter",
+"Limetten-Koriander-Butter":"Lime-Coriander Butter",
+"Saucen-Trio":"Sauce Trio",
+"Alle Preise in Euro inklusive gesetzlicher MwSt. Abweichungen und saisonale Empfehlungen sind möglich.":"All prices in euros including VAT. Variations and seasonal recommendations are possible.",
+"Hinweise zu Allergenen und Zusatzstoffen erhalten Sie gern von unserem Serviceteam.":"Our service team will gladly provide information on allergens and additives.",
+"Weinkarte":"Wine List",
+"Weine & Champagner":"Wines & Champagne",
+"Hausweine im offenen Ausschank · Georgische Weine · Champagner":"House wines by the glass · Georgian wines · Champagne",
+"Hausweine im offenen Ausschank":"House wines by the glass",
+"Deutschland / frisch / mineralisch · weiß trocken":"Germany / fresh / mineral · dry white",
+"Deutschland / weich / rund · weiß trocken":"Germany / soft / round · dry white",
+"Deutschland / elegant / mild · weiß trocken":"Germany / elegant / mild · dry white",
+"Italien / fruchtig / harmonisch · weiß trocken":"Italy / fruity / harmonious · dry white",
+"Georgische Weine":"Georgian Wines",
+"Georgien / kräftig / dunkel · rot trocken":"Georgia / bold / dark · dry red",
+"Georgien / fruchtig / weich · rot lieblich":"Georgia / fruity / soft · semi-sweet red",
+"Georgien / samtig / rund · rot lieblich":"Georgia / velvety / round · semi-sweet red",
+"Georgien / frisch / elegant · weiß trocken":"Georgia / fresh / elegant · dry white",
+"Georgien / aromatisch / weich · weiß lieblich":"Georgia / aromatic / soft · semi-sweet white",
+"Georgien / Qvevri / Premium · rot trocken":"Georgia / qvevri / premium · dry red",
+"Schaumwein & Champagner":"Sparkling & Champagne",
+"Italien / fein perlend / Aperitif":"Italy / finely sparkling / aperitif",
+"Champagne / elegant / feinperlig":"Champagne / elegant / fine bubbles",
+"Champagne / fruchtig / elegant":"Champagne / fruity / elegant",
+"Empfehlung des Hauses":"House Recommendation",
+"Zu Fisch & Vorspeisen: Tsolikauri oder Riesling · Zu Fleisch & Schmorgerichten: Saperavi oder Saperavi Bio Qvevri · Zu Dessert & Käse: Tvishi oder Kindzmarauli":"With fish & starters: Tsolikauri or Riesling · With meat & braised dishes: Saperavi or Saperavi Bio Qvevri · With dessert & cheese: Tvishi or Kindzmarauli",
+"Alle Preise in Euro inklusive gesetzlicher MwSt. · Jahrgangs- und Sortenänderungen vorbehalten.":"All prices in euros including VAT. · Vintages and varieties subject to change.",
+"Ihren Tisch reservieren":"Reserve Your Table",
+"Wählen Sie Datum, Uhrzeit und Personenzahl – Sie erhalten sofort eine Bestätigung.":"Choose date, time and party size – you will receive instant confirmation.",
+"Wird das Buchungsfenster nicht angezeigt?":"Booking window not showing?",
+"Hier direkt reservieren ↗":"Reserve directly here ↗",
+"Für Gesellschaften ab 7 Personen bitten wir um telefonische Anfrage:":"For parties of 7 or more, please enquire by phone:",
+"Reservierte Tische halten wir 15 Minuten frei.":"Reserved tables are held for 15 minutes.",
+"So erreichen Sie uns":"How to Reach Us",
+"Tamare Restaurant":"Tamare Restaurant",
+"Anfahrt":"Getting Here",
+"Gut erreichbar über die Grafenberger Allee (B7);":"Easily reached via Grafenberger Allee (B7);",
+"Straßenbahn-Haltestellen in unmittelbarer Nähe.":"tram stops in the immediate vicinity.",
+"Mo, Mi, Do · 16:00 – 22:00 Uhr (Küche bis 21:30)":"Mon, Wed, Thu · 4–10 pm (kitchen until 9:30 pm)",
+"Fr · 16:00 – 23:00 Uhr (Küche bis 22:30)":"Fri · 4–11 pm (kitchen until 10:30 pm)",
+"Sa · 12:00 – 23:00 Uhr (Küche bis 22:30)":"Sat · 12–11 pm (kitchen until 10:30 pm)",
+"So · 12:00 – 22:00 Uhr (Küche bis 21:30)":"Sun · 12–10 pm (kitchen until 9:30 pm)",
+"Dienstag Ruhetag":"Closed on Tuesdays",
+"Besuch":"Visit",
+"Mo, Mi, Do 16–22 · Fr 16–23":"Mon, Wed, Thu 4–10 pm · Fri 4–11 pm",
+"Sa 12–23 · So 12–22 · Di Ruhetag":"Sat 12–11 pm · Sun 12–10 pm · Tue closed",
+"Fine Dining Experience – kaukasisch inspirierte & mediterrane Küche im Herzen von Düsseldorf.":"Fine dining experience – Caucasian-inspired & Mediterranean cuisine in the heart of Düsseldorf.",
+"E-Mail schreiben":"Send an e-mail",
+"Rechtliches":"Legal",
+"Impressum":"Legal Notice (German)",
+"Datenschutz":"Privacy Policy (German)",
+"Cookie-Einstellungen":"Cookie Settings",
+"Tamare Restaurant · Düsseldorf":"Tamare Restaurant · Düsseldorf",
+"Alle Preise inkl. MwSt.":"All prices incl. VAT.",
+"Cookies & Datenschutz.":"Cookies & privacy.",
+"Wir verwenden technisch notwendige Speichertechniken. Unser Reservierungssystem (Lightspeed) setzt für die Buchungsfunktion erforderliche Cookies. Details in unserer":"We use technically necessary storage. Our reservation system (Lightspeed) sets cookies required for booking. Details in our",
+"Datenschutzerklärung":"privacy policy",
+"Einverstanden":"Accept",
+"Nur notwendige":"Essential only"
+};
+var deStore=new Map();
+function norm(s){return s.replace(/\u00a0/g,' ').replace(/\s+/g,' ').trim()}
+function setLang(l){
+  document.documentElement.lang=l;
+  var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);
+  var n;
+  while((n=walker.nextNode())){
+    if(l==='en'){
+      var key=norm(n.nodeValue);
+      if(key&&i18n[key]!==undefined){deStore.set(n,n.nodeValue);n.nodeValue=i18n[key]}
+    }else{
+      if(deStore.has(n)){n.nodeValue=deStore.get(n)}
+    }
+  }
+  if(l==='de')deStore.clear();
+  document.getElementById('langToggle').textContent=(l==='de'?'EN':'DE');
+  try{localStorage.setItem('tamare-lang',l)}catch(e){}
+  window.tamareLang=l;
+}
+document.getElementById('langToggle').addEventListener('click',function(e){
+  e.preventDefault();
+  setLang(window.tamareLang==='en'?'de':'en');
+});
+(function(){
+  var saved=null;try{saved=localStorage.getItem('tamare-lang')}catch(e){}
+  window.tamareLang='de';
+  if(saved==='en')setLang('en');
+})();
+/* Nach Seitenwechsel: Englisch erneut anwenden (Reveal-Inhalte bleiben gleich, Texte sind persistent im DOM) */
+
+/* ---------- Cookie-Banner ---------- */
+var cookieBox=document.getElementById('cookie');
+function getConsent(){try{return localStorage.getItem('tamare-consent')}catch(e){return null}}
+function setConsent(v){try{localStorage.setItem('tamare-consent',v)}catch(e){}}
+if(!getConsent())cookieBox.classList.add('show');
+document.getElementById('cookieAccept').addEventListener('click',function(){setConsent('all');cookieBox.classList.remove('show')});
+document.getElementById('cookieEssential').addEventListener('click',function(){setConsent('essential');cookieBox.classList.remove('show')});
+document.getElementById('cookieReopen').addEventListener('click',function(e){e.preventDefault();cookieBox.classList.add('show')});
+
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# Vorschau – noch nicht indexieren (Impressum/Datenschutz sind Entwürfe).
+# Vor dem echten Launch diese Datei anpassen/entfernen.
+User-agent: *
+Disallow: /
