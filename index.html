@@ -153,9 +153,9 @@ section{padding:6.5rem 2.4rem}
 .hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;color:#fff;overflow:hidden}
 .hero-media{position:absolute;inset:-12% 0;background:linear-gradient(180deg,#2b2a26,#171613)}
 .hero-media img{width:100%;height:100%;object-fit:cover;will-change:transform}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,9,.55) 0%,rgba(12,11,9,.25) 45%,rgba(14,13,11,1) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,9,.28) 0%,rgba(12,11,9,.14) 38%,rgba(12,11,9,.48) 76%,rgba(14,13,11,1) 100%)}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 2.4s ease;will-change:opacity,transform;animation:vzoom 26s ease-in-out infinite alternate}
-@keyframes vzoom{from{transform:scale(1.0)}to{transform:scale(1.035)}}
+@keyframes vzoom{from{transform:scale(1.0)}to{transform:scale(1.015)}}
 .hero-video.on{opacity:1}
 .hero-inner{position:relative;z-index:2;max-width:960px}
 .hero-logo{width:min(400px,74vw);height:auto;margin:0 auto 1.4rem;filter:drop-shadow(0 6px 40px rgba(0,0,0,.55));opacity:0;transform:translateY(26px) scale(.97);animation:heroIn 1.4s cubic-bezier(.22,1,.36,1) .2s forwards}
@@ -725,15 +725,15 @@ footer a:hover{color:#fff;text-decoration:underline}
         <div class="gold-rule"></div>
       </div>
       <div class="gal">
-        <figure class="reveal"><img src="bilder/salat-tamare.jpg" alt="Salat Tamare"><figcaption>Salat Tamare</figcaption></figure>
-        <figure class="reveal d1"><img src="bilder/moment-tisch.jpg" alt="Gedeckter Tisch mit Vorspeisen im Tamare"><figcaption>Momente am Tisch</figcaption></figure>
-        <figure class="reveal d2"><img src="bilder/tamare-foto-4.jpg" alt="Impression aus dem Tamare"><figcaption>Impression II</figcaption></figure>
-        <figure class="reveal"><img src="bilder/georgischer-salat.jpg" alt="Georgischer Salat Tamare"><figcaption>Georgischer Salat Tamare</figcaption></figure>
-        <figure class="reveal d1"><img src="bilder/charcho.jpg" alt="Charcho – kräftige Suppe vom Rind"><figcaption>Charcho</figcaption></figure>
-        <figure class="reveal d2"><img src="bilder/badridzhani.jpg" alt="Badridzhani Tamare – Auberginenröllchen"><figcaption>Badridzhani Tamare</figcaption></figure>
-        <figure class="reveal"><img src="bilder/chkmeruli.jpg" alt="Chkmeruli – Hähnchenbrust in Knoblauchsauce"><figcaption>Chkmeruli</figcaption></figure>
-        <figure class="reveal d1"><img src="bilder/trueffel-pommes.jpg" alt="Trüffelpommes"><figcaption>Trüffelpommes</figcaption></figure>
-        <figure class="reveal d2"><img src="bilder/cheesecake-tee.jpg" alt="Hausgemachter Cheesecake mit Sanddorntee"><figcaption>Cheesecake &amp; Sanddorntee</figcaption></figure>
+        <figure class="reveal"><img src="bilder/moment-tisch.jpg" alt="Gedeckter Tisch mit Vorspeisen im Tamare"><figcaption>Momente am Tisch</figcaption></figure>
+        <figure class="reveal d1"><img src="bilder/tamare-foto-4.jpg" alt="Riesen-Garnelen vom Lavastein" style="object-position:center 42%"><figcaption>Riesen-Garnelen</figcaption></figure>
+        <figure class="reveal d2"><img src="bilder/koch-portrait.jpg" alt="Unser Küchenchef" style="object-position:center 18%"><figcaption>Unser Küchenchef</figcaption></figure>
+        <figure class="reveal"><img src="bilder/cheesecake-tee.jpg" alt="Basque Cheesecake mit Sanddorntee" style="object-position:28% center"><figcaption>Basque Cheesecake</figcaption></figure>
+        <figure class="reveal d1"><img src="bilder/tamare-foto-3.jpg" alt="Kräftige Suppe im Tamare"><figcaption>Vom Feuer</figcaption></figure>
+        <figure class="reveal d2"><img src="bilder/supra-tisch.jpg" alt="Gedeckter Tisch mit Rotwein" style="object-position:42% 55%"><figcaption>Supra – der gedeckte Tisch</figcaption></figure>
+        <figure class="reveal"><img src="bilder/kontakt-tisch.jpg" alt="Gedeckter Tisch mit Vorspeisen" style="object-position:center 58%"><figcaption>Ein Abend zu zweit</figcaption></figure>
+        <figure class="reveal d1"><img src="bilder/interior-hell.jpg" alt="Der lichtdurchflutete Gastraum am Tag"><figcaption>Unser Gastraum</figcaption></figure>
+        <figure class="reveal d2"><img src="bilder/koch-grill.jpg" alt="Am Lavastein-Grill" style="object-position:60% center"><figcaption>Am offenen Feuer</figcaption></figure>
       </div>
       <p class="reveal" style="margin-top:3.5rem"><a class="btn" href="https://www.instagram.com/tamare.restaurant.dusseldorf/" target="_blank" rel="noopener">Folgen Sie uns auf Instagram</a></p>
     </div>
@@ -1337,6 +1337,13 @@ var i18n={
 "Einblicke":"Impressions",
 "Momente aus dem Tamare":"Moments from Tamare",
 "Momente am Tisch":"Moments at the Table",
+"Riesen-Garnelen":"King Prawns",
+"Unser Küchenchef":"Our Head Chef",
+"Basque Cheesecake":"Basque Cheesecake",
+"Vom Feuer":"From the Fire",
+"Ein Abend zu zweit":"An Evening for Two",
+"Unser Gastraum":"Our Dining Room",
+"Am offenen Feuer":"Over the Open Fire",
 "Hausgemachter Cheesecake":"Homemade Cheesecake",
 "Folgen Sie uns auf Instagram":"Follow Us on Instagram",
 "Folgt uns auf Instagram":"Follow Us on Instagram",
