@@ -255,6 +255,18 @@ section{padding:6.5rem 2.4rem}
 .orbs-3 .o4{right:auto;left:10%;bottom:16%}
 .scene .s-text,.scene .s-media{position:relative;z-index:1}
 .scene:nth-child(odd) .plate{animation-delay:1.6s}
+/* Szenen-Bühne: dunkler Lavastein-Hintergrund statt der Kugeln */
+.scenes{
+  background:
+    linear-gradient(180deg, rgba(9,8,6,.82) 0%, rgba(9,8,6,.62) 45%, rgba(9,8,6,.86) 100%),
+    url(bilder/scene-stein.jpg) center/cover fixed;
+}
+.scene .s-bg{display:none}
+/* sanfter warmer Lichtkegel hinter dem Teller – Gericht schwebt auf dem Stein */
+.scene .s-media::before{content:"";position:absolute;inset:-14% -10%;z-index:-1;
+  background:radial-gradient(ellipse at 50% 46%, rgba(200,155,85,.13), rgba(200,155,85,.05) 42%, transparent 70%);
+  filter:blur(24px);pointer-events:none}
+@media(max-width:920px){.scenes{background-attachment:scroll}}
 /* Epische Einblendungen */
 .reveal-plate{transform:translateY(80px) scale(.9);transition-duration:1.6s}
 .reveal-title{letter-spacing:.5em;transition:opacity 1.4s ease,transform 1.4s ease,letter-spacing 1.8s cubic-bezier(.22,1,.36,1)}
@@ -498,7 +510,7 @@ footer a:hover{color:#fff;text-decoration:underline}
        PLATE-SLOT: Sobald die selbst freigestellten Teller-PNGs (transparenter
        Hintergrund) vorliegen, einfach die drei img src unten auf die PNGs
        zeigen lassen und in der CSS-Klasse .plate den border-radius entfernen. -->
-  <section class="scenes" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:0">
+  <section class="scenes" style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:0">
 
     <div class="scene">
       <div class="s-text">
@@ -710,7 +722,7 @@ footer a:hover{color:#fff;text-decoration:underline}
       </div>
       <div class="gal">
         <figure class="reveal"><img src="bilder/salat-tamare.jpg" alt="Salat Tamare"><figcaption>Salat Tamare</figcaption></figure>
-        <figure class="reveal d1"><img src="bilder/tamare-foto-3.jpg" alt="Impression aus dem Tamare"><figcaption>Impression I</figcaption></figure>
+        <figure class="reveal d1"><img src="bilder/moment-tisch.jpg" alt="Gedeckter Tisch mit Vorspeisen im Tamare"><figcaption>Momente am Tisch</figcaption></figure>
         <figure class="reveal d2"><img src="bilder/tamare-foto-4.jpg" alt="Impression aus dem Tamare"><figcaption>Impression II</figcaption></figure>
         <figure class="reveal"><img src="bilder/georgischer-salat.jpg" alt="Georgischer Salat Tamare"><figcaption>Georgischer Salat Tamare</figcaption></figure>
         <figure class="reveal d1"><img src="bilder/charcho.jpg" alt="Charcho – kräftige Suppe vom Rind"><figcaption>Charcho</figcaption></figure>
@@ -942,7 +954,7 @@ footer a:hover{color:#fff;text-decoration:underline}
           </p>
         </div>
       </div>
-      <img class="reveal d1" src="bilder/badridzhani.jpg" alt="Gedeckter Tisch im Tamare Restaurant">
+      <img class="reveal d1" src="bilder/tamare-foto-2.jpg" alt="Elegant gedeckter Tisch im Tamare Restaurant">
       <!-- Optional: Google-Maps-Karte erst nach Cookie-Einwilligung einbinden (Zwei-Klick-Lösung) -->
     </div>
   </section>
@@ -1153,8 +1165,8 @@ route();
    eingerechnet (60 fps Quelle -> butterweiche 30 fps).
    Reihenfolge einfach hier umsortieren. */
 var heroClips=[
-  'videos/img_2096.mp4',  /* Wagyu Short Ribs – Zuschnitt (Opener) */
-  'videos/img_2101.mp4',  /* Khinkali */
+  'videos/img_2101.mp4',  /* Khinkali (Opener) */
+  'videos/img_2096.mp4',  /* Wagyu Short Ribs – Zuschnitt */
   'videos/img_8338.mp4',  /* Klavier – Ambiente */
   'videos/img_9735.mp4',  /* Salat Tamare – Anrichten */
   'videos/img_2128.mp4',  /* Garnelen am Feuer */
@@ -1319,6 +1331,7 @@ var i18n={
 "Georgische Weine aus der Qvevri · siehe Weinkarte":"Georgian qvevri wines · see wine list",
 "Einblicke":"Impressions",
 "Momente aus dem Tamare":"Moments from Tamare",
+"Momente am Tisch":"Moments at the Table",
 "Hausgemachter Cheesecake":"Homemade Cheesecake",
 "Folgen Sie uns auf Instagram":"Follow Us on Instagram",
 "Folgt uns auf Instagram":"Follow Us on Instagram",
