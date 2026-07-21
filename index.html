@@ -273,9 +273,9 @@ section{padding:6.5rem 2.4rem}
 .reveal-title.in-view{letter-spacing:.12em}
 
 /* ---------- Galerie ---------- */
-.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:3.5rem}
-.gal figure{margin:0;text-align:left}
-.gal img{aspect-ratio:3/4;object-fit:cover;width:100%}
+.gal{column-count:3;column-gap:1.6rem;margin-top:3.5rem}
+.gal figure{margin:0 0 1.6rem;text-align:left;break-inside:avoid;-webkit-column-break-inside:avoid}
+.gal img{width:100%;height:auto;display:block}
 .gal figcaption{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:.7rem}
 
 /* ---------- Instagram-Feed ---------- */
@@ -388,7 +388,7 @@ footer a:hover{color:#fff;text-decoration:underline}
   .scene .s-media{order:1}
   .plate{max-width:420px}
   .split.rev>*:first-child{order:0}
-  .gal{grid-template-columns:1fr 1fr}
+  .gal{column-count:2}
   footer .wrap{grid-template-columns:1fr 1fr}
   nav{position:fixed;inset:0;background:#0B0A08;color:var(--ink);flex-direction:column;justify-content:center;gap:2.2rem;display:none}
   nav.open{display:flex}
@@ -398,7 +398,7 @@ footer a:hover{color:#fff;text-decoration:underline}
   .booking-frame iframe{height:760px}
   .band{min-height:52vh;padding:5rem 1.4rem}
 }
-@media(max-width:560px){.gal{grid-template-columns:1fr}}
+@media(max-width:560px){.gal{column-count:1}}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto}
   .reveal,.hero-logo,.hero-eyebrow,.hero-sub,.hero-cta{opacity:1!important;transform:none!important}
