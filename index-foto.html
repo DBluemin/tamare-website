@@ -57,6 +57,9 @@ body{
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
+a,button,.burger,.btn{-webkit-tap-highlight-color:transparent}
+:focus{outline:none}
+:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
 button{font-family:inherit;cursor:pointer}
 ::selection{background:var(--gold);color:#fff}
 
@@ -145,7 +148,10 @@ nav a:hover,nav a.active{opacity:1;border-color:var(--gold)}
 }
 .lang-toggle:hover{background:var(--gold);border-color:var(--gold);color:#fff}
 .burger{display:none;background:none;border:none;flex-direction:column;gap:6px;padding:6px;z-index:120}
-.burger span{width:26px;height:1px;background:currentColor;display:block}
+.burger span{width:26px;height:1px;background:currentColor;display:block;transition:transform .38s cubic-bezier(.22,1,.36,1),opacity .22s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ---------- Seiten ---------- */
 .page{display:none;animation:fade .55s ease}
@@ -395,10 +401,20 @@ footer a:hover{color:#fff;text-decoration:underline}
   .split.rev>*:first-child{order:0}
   .gal{column-count:2}
   footer .wrap{grid-template-columns:1fr 1fr}
-  nav{position:fixed;inset:0;background:#0B0A08;color:var(--ink);flex-direction:column;justify-content:center;gap:2.2rem;display:none}
-  nav.open{display:flex}
-  nav a{font-size:.9rem}
-  .burger{display:flex}
+  header{grid-template-columns:1fr auto;padding:1rem 1.5rem;z-index:130}
+  .brandlogo{justify-self:start}
+  .burger{display:flex;justify-self:end;position:relative;z-index:131}
+  /* Beim offenen Menü Blur des Headers deaktivieren: sonst wird der Header zum Containing-Block und das Overlay füllt nicht den Viewport */
+  body.menu-open header,body.menu-open header.light,body.menu-open header.scrolled{backdrop-filter:none;-webkit-backdrop-filter:none;background:transparent;box-shadow:none}
+  header nav{justify-self:stretch}
+  nav{position:fixed;inset:0;background:linear-gradient(180deg,#0B0A08 0%,#13110C 100%);color:var(--ink);flex-direction:column;justify-content:center;align-items:center;gap:0;display:none;z-index:120;padding:6rem 2rem 3rem;opacity:0;transition:opacity .4s ease}
+  nav.open{display:flex;opacity:1}
+  nav a{font-family:var(--display);font-size:1.55rem;letter-spacing:.06em;text-transform:none;opacity:.92;padding:.62rem 0;border:none}
+  nav a:hover,nav a.active{opacity:1;border:none;color:var(--gold-deep)}
+  nav .nav-book{margin-top:1.8rem;font-family:var(--body);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold-deep);padding:.95rem 2.6rem}
+  nav .nav-book:hover{background:var(--gold);color:#0E0D0B}
+  nav .lang-toggle{margin-top:1.5rem;font-size:.64rem;letter-spacing:.24em}
+  body.menu-open{overflow:hidden}
   section{padding:4.5rem 1.4rem}
   .booking-frame iframe{height:760px}
   .band{min-height:52vh;padding:5rem 1.4rem}
@@ -1117,6 +1133,9 @@ function route(){
     a.classList.toggle('active',a.getAttribute('data-page')===h);
   });
   document.getElementById('nav').classList.remove('open');
+  document.getElementById('burger').classList.remove('open');
+  document.getElementById('burger').setAttribute('aria-expanded','false');
+  document.body.classList.remove('menu-open');
   document.getElementById('header').classList.toggle('light',h!=='home');
   window.scrollTo(0,0);
   observeReveals();
@@ -1127,7 +1146,10 @@ window.addEventListener('hashchange',route);
 var header=document.getElementById('header');
 window.addEventListener('scroll',function(){header.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
 document.getElementById('burger').addEventListener('click',function(){
-  document.getElementById('nav').classList.toggle('open');
+  var open=document.getElementById('nav').classList.toggle('open');
+  this.classList.toggle('open',open);
+  this.setAttribute('aria-expanded',open?'true':'false');
+  document.body.classList.toggle('menu-open',open);
 });
 
 /* ---------- Scroll-Reveal (IntersectionObserver) ---------- */
